@@ -40,7 +40,7 @@ And although the various named technologies have made the Internet way more usef
 
 The `State Share Image` proposes to encode the state of the application, the `JavaScript Object`, into an image. This image could then be saved as a bookmark, copy-pasted to other users, and so forth.
 
-An application could use the default base image, or it's own logo/favicon, pass it together with the `state` object to the `shareStateImage()` function, and retrieve the new slightly modified image.
+An application could use the default base image, or it's own logo/favicon, pass it together with the `state` object to the `stateShareImage()` function, and retrieve the new slightly modified image.
 
 The image could be displayed on the URL bar, or somewhere in the application.
 
@@ -62,8 +62,10 @@ Define the base image within a `meta` tag
 
     <meta property="state-share-image" content="/path/to/image.png">
 
-if no image is defined, then the default one will be used.
+If no image is defined, then the default one will be used.
 
-Pass the `state` object and the image, if defined, to the `shareStateImage()` function and pass the returned image to the supplied `<state-share-image>` element or to another HTML element defined within the application.
+Pass the `state` object and the domain-based image, if defined, to the `stateShareImage()` function and pass the returned image to the supplied `<state-share-image>` element or to another HTML element defined within the application.
 
-The `<state-share-image>` element allows for easy manipulation (copy-pasting) of state images.
+The `<state-share-image>` element allows for easy manipulation (copy-pasting) of state images. It displays the image, a single click copies the image to clipboard as `data:image/png;base64`, a right click opens a contextual menu with the option to `Paste State Share Image` if a state share image was previously copied.
+
+When a new state is pasted in the `<state-share-image>` element a `stateshareimage` Event is emitted.
