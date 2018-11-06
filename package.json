@@ -4,6 +4,10 @@
     "description": "HTTP(S) State-Sharing Using Domain-Based Generated Image",
     "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
     "license": "MIT",
+    "repository": {
+        "type" : "git",
+        "url" : "https://github.com/plurid/state-share-image.git"
+    },
     "main": "app.js",
     "scripts": {
         "build": "webpack",
@@ -27,6 +31,5 @@
         "uglifyjs-webpack-plugin": "^1.2.7",
         "webpack": "^4.16.4",
         "webpack-cli": "^3.1.0"
-    },
-    "dependencies": {}
+    }
 }
