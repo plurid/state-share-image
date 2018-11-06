@@ -20,7 +20,7 @@ This string of characters, the `URL`, can be used to identify the current locati
 
 However, the Internet is not `like` a real-reality place, where a location (say, the marketplace of a small town) appears the same to whomever visits it. The Internet is dynamic, and even more, it is stateful. The same address (`URL`) might look entirely different from one user to another.
 
-What changes the look and even the behavior of a certain `URL` is the state. The state can be a `JavaScript Object` which initializes the page when we first see it, and then changes accordingly to our interactions. It could look like this
+What changes the look and even the behavior of a certain `URL` is the state. The state can be a `JavaScript Object` which initializes the page when we first see it, and then changes according to our interactions. It could look like this
 
     let state = {
         app: {
@@ -28,7 +28,7 @@ What changes the look and even the behavior of a certain `URL` is the state. The
         }
     }
 
-and describes that the application (web page) is to be rendered with a `night` theme (black background; white text). Of course, the `state` could be more complicated than this, and it always is.
+and it describes that the application (web page) is to be rendered with a `night` theme (black background; white text). Of course, the `state` could be more complicated than this, and it always is.
 
 The issue is that by design HTTP(S) is a stateless transfer protocol. Once the user loads a page (a transfer is succesfully carried on) it doesn't know of any of the previous interactions, even if it is the same page. To surpass this design limit various technologies have been developed, as `cookies`, `localStorage`, or `sessionStorage`.
 
@@ -40,7 +40,7 @@ And although the various named technologies have made the Internet way more usef
 
 The `State Share Image` proposes to encode the state of the application, the `JavaScript Object`, into an image. This image could then be saved as a bookmark, copy-pasted to other users, and so forth.
 
-An application could use the default base image, or it's own logo/favicon, pass it together with the `state` object to the `shareStateImage` function, and retrieve the new slightly modified image.
+An application could use the default base image, or it's own logo/favicon, pass it together with the `state` object to the `shareStateImage()` function, and retrieve the new slightly modified image.
 
 The image could be displayed on the URL bar, or somewhere in the application.
 
@@ -50,3 +50,20 @@ The image could be displayed on the URL bar, or somewhere in the application.
 </p>
 
 When the new, state-containing image is received by the application, it differentiates the base image and transforms the difference from image to the `state` object.
+
+
+### Usage
+
+Add the `state-share-image` script to the application (or install with `npm`).
+
+Define the `state` object for the application.
+
+Define the base image within a `meta` tag
+
+    <meta property="state-share-image" content="/path/to/image.png">
+
+if no image is defined, then the default one will be used.
+
+Pass the `state` object and the image, if defined, to the `shareStateImage()` function and pass the returned image to the supplied `<state-share-image>` element or to another HTML element defined within the application.
+
+The `<state-share-image>` element allows for easy manipulation (copy-pasting) of state images.
