@@ -38,9 +38,9 @@ And although the various named technologies have made the Internet way more usef
 
 ### Proposal
 
-The `State Share Image` proposes to encode the state of the application, the `JavaScript Object` into an image. This image could then be saved as a bookmark, copy-pasted to others, and so forth.
+The `State Share Image` proposes to encode the state of the application, the `JavaScript Object`, into an image. This image could then be saved as a bookmark, copy-pasted to other users, and so forth.
 
-An application could use the default base image, or it's own logo/favicon, pass it together with the `state` object to `shareStateImage` function, and retrieve the new image.
+An application could use the default base image, or it's own logo/favicon, pass it together with the `state` object to the `shareStateImage` function, and retrieve the new slightly modified image.
 
 The image could be displayed on the URL bar, or somewhere in the application.
 
@@ -48,3 +48,5 @@ The image could be displayed on the URL bar, or somewhere in the application.
     <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/fav-url-state-img.png" height="150px">
     <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/url-domain-based-state-img.png" height="150px">
 </p>
+
+When the new, state-containing image is received by the application, it differentiates the base image and transforms the difference from image to the `state` object.
