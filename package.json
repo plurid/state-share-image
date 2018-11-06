@@ -1,7 +1,7 @@
 {
     "name": "state-share-image",
     "version": "0.1.0",
-    "description": "HTTP State-Sharing Using Domain-Based Generated Image",
+    "description": "HTTP(S) State-Sharing Using Domain-Based Generated Image",
     "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
     "license": "MIT",
     "main": "app.js",
