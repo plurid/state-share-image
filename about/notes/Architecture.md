@@ -4,3 +4,9 @@
 From a base image and a state object obtain a new image.
 
 The image is shared by the user to another user.
+
+
+
+### Future
+
+State with expiration date
