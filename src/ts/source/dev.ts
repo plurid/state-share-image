@@ -5,6 +5,15 @@
  * @param stateObject
  */
 function shareState (baseImage: String, stateObject: Object) {
+    // const canvas = document.createElement('canvas');
+    // const context = canvas.getContext('2d');
+
+    // context.fillStyle = "#000";
+    // context.fillRect(0, 0, canvas.width, canvas.height);
+
+
+    // const image = document.createElement('img');
+
     // console.log('baseImage', baseImage);
     console.log('stateObject', stateObject);
 
