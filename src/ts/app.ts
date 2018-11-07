@@ -1,6 +1,7 @@
-import './source/vendor/vendor.ts';
+import './source/vendor/vendor';
 
 
-import './source/dev.ts';
 
-import './source/components/components.ts';
+import './source/components/components';
+
+import './source/core/core';
