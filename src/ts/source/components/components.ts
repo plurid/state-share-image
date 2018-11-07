@@ -1,1 +1,1 @@
-import './state-share-image/state-share-image.ts';
+import './state-share-image/state-share-image';
