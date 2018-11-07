@@ -117,7 +117,31 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\n__webpack_require__(/*! ./source/dev.ts */ \"./src/ts/source/dev.ts\");\n\n\n//# sourceURL=webpack:///./src/ts/app.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\n__webpack_require__(/*! ./source/dev.ts */ \"./src/ts/source/dev.ts\");\n__webpack_require__(/*! ./source/components/components.ts */ \"./src/ts/source/components/components.ts\");\n\n\n//# sourceURL=webpack:///./src/ts/app.ts?");
+
+/***/ }),
+
+/***/ "./src/ts/source/components/components.ts":
+/*!************************************************!*\
+  !*** ./src/ts/source/components/components.ts ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\n__webpack_require__(/*! ./state-share-image/state-share-image.ts */ \"./src/ts/source/components/state-share-image/state-share-image.ts\");\n\n\n//# sourceURL=webpack:///./src/ts/source/components/components.ts?");
+
+/***/ }),
+
+/***/ "./src/ts/source/components/state-share-image/state-share-image.ts":
+/*!*************************************************************************!*\
+  !*** ./src/ts/source/components/state-share-image/state-share-image.ts ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar __extends = (this && this.__extends) || (function () {\n    var extendStatics = function (d, b) {\n        extendStatics = Object.setPrototypeOf ||\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\n        return extendStatics(d, b);\n    }\n    return function (d, b) {\n        extendStatics(d, b);\n        function __() { this.constructor = d; }\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\n    };\n})();\nvar StateShareImage = /** @class */ (function (_super) {\n    __extends(StateShareImage, _super);\n    function StateShareImage() {\n        return _super.call(this) || this;\n    }\n    return StateShareImage;\n}(HTMLElement));\ncustomElements.define('state-share-image', StateShareImage);\n\n\n//# sourceURL=webpack:///./src/ts/source/components/state-share-image/state-share-image.ts?");
 
 /***/ }),
 
