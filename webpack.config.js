@@ -40,6 +40,7 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
+                    'postcss-loader',
                     'sass-loader',
                 ],
             },
@@ -47,7 +48,7 @@ module.exports = {
                 test: /\.ts$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "awesome-typescript-loader"
+                    loader: 'awesome-typescript-loader'
                 }
             }
         ]
