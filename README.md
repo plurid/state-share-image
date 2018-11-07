@@ -14,7 +14,7 @@ HTTP(S) State-Sharing Using Domain-Based Generated Image
 
 ### Current State
 
-In order to describe the place where we happen to be on the Internet at a certain time we use a `Uniform Resource Identifier` (`URI`), more precisely a `Uniform Resource Locator` (`URL`). The `URL` takes the form of a string of characters, for example `https://www.plurid.com`, in which we have concatenated the transfer protocol, in this case `HyperText Transfer Protocol Secure` (`HTTPS`), the domain, `plurid`, it's subdomain, `www`, and the top-level domain `com`.
+In order to describe the place where we happen to be on the Internet at a certain time we use a `Uniform` `Resource` `Identifier` (`URI`), more precisely a `Uniform` `Resource` `Locator` (`URL`). The `URL` takes the form of a string of characters, for example `https://www.plurid.com`, in which we have concatenated the transfer protocol, in this case `HyperText Transfer Protocol Secure` (`HTTPS`), the domain, `plurid`, it's subdomain, `www`, and the top-level domain `com`.
 
 This string of characters, the `URL`, can be used to identify the current location for ourselves at a later time (by saving it letter-for-letter in a record, somewhat misnamed, bookmark), or we can share it with others by copy-pasting.
 
@@ -40,7 +40,7 @@ And although the various named technologies have made the Internet way more usef
 
 The `State Share Image` proposes to encode the state of the application, the `JavaScript Object`, into an image. This image could then be saved as a bookmark, copy-pasted to other users, and so forth.
 
-An application could use the default base image, or it's own logo/favicon, pass it together with the `state` object to the `stateShareImage()` function, and retrieve the new slightly modified image.
+An application could use the default base image, or it's own logo/favicon. The application will pass with the `state` object to the `stateShareImage()` function, and retrieve the new slightly modified image.
 
 The image could be displayed on the URL bar, or somewhere in the application.
 
@@ -64,7 +64,7 @@ Define the base image within a `meta` tag
 
 If no image is defined, then the default one will be used.
 
-Pass the `state` object and the domain-based image, if defined, to the `stateShareImage()` function and pass the returned image to the supplied `<state-share-image>` element or to another HTML element defined within the application.
+Pass the `state` object to the `stateShareImage()` function and then pass the returned image to the supplied `<state-share-image>` element or to another HTML element defined within the application.
 
 The `<state-share-image>` element allows for easy manipulation (copy-pasting) of state images. It displays the image, a single click copies the image to clipboard as `data:image/png;base64`, a right click opens a contextual menu with the option to `Paste State Share Image` if a state share image was previously copied.
 
