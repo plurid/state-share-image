@@ -14,7 +14,7 @@ HTTP(S) State-Sharing Using Domain-Based Generated Image
 
 ### Current State
 
-In order to describe the place where we happen to be on the Internet at a certain time we use a `Uniform` `Resource` `Identifier` (`URI`), more precisely a `Uniform` `Resource` `Locator` (`URL`). The `URL` takes the form of a string of characters, for example `https://www.plurid.com`, in which we have concatenated the transfer protocol, in this case `HyperText Transfer Protocol Secure` (`HTTPS`), the domain, `plurid`, it's subdomain, `www`, and the top-level domain `com`.
+In order to describe the place where we happen to be on the Internet at a certain time we use a `Uniform` `Resource` `Identifier` (`URI`), more precisely a `Uniform` `Resource` `Locator` (`URL`). The `URL` takes the form of a string of characters, for example `https://www.plurid.com`, in which we have concatenated the transfer protocol, in this case `HyperText Transfer Protocol Secure` (`HTTPS`), the domain, `plurid`, the subdomain, `www`, and the top-level domain `com`.
 
 This string of characters, the `URL`, can be used to identify the current location for ourselves at a later time (by saving it letter-for-letter in a record, somewhat misnamed, bookmark), or we can share it with others by copy-pasting.
 
