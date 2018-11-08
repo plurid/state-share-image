@@ -1,4 +1,5 @@
 import { defaultBaseImage } from './defaultBaseImage';
+import { convert } from './convert';
 
 
 
@@ -32,9 +33,78 @@ function stateShareImage(stateObject: Object) {
         baseImage = defaultBaseImage;
     }
 
-    console.log('baseImage', baseImage);
+    // console.log('baseImage', baseImage);
 
-    const stateImage = baseImage;
+
+    let image = new Image();
+    image.onload = function() {
+        let canvas = document.createElement("canvas");
+        let ctx = canvas.getContext("2d");
+        canvas.width = image.width;
+        canvas.height = image.height;
+
+        ctx.drawImage(image, 0, 0);
+
+        var imgData = ctx.getImageData(0, 0, image.width, image.height);
+        var colors = imgData.data;
+
+        // console.log(colors[0]);
+        // console.log(colors[1]);
+        // console.log(colors[2]);
+        // console.log(colors[3]);
+        // console.log('-----');
+
+        let i = 0;
+
+        let convertedState = ''
+
+        while (i < stateString.length) {
+            const char = convert.toBinary(stateString[i]);
+            // const char = stateString[i].charCodeAt(0).toString(2);
+            console.log(char);
+
+            const digit = convert.fromBinary(char);
+            convertedState += digit;
+            console.log(digit);
+
+            i++;
+        }
+
+        console.log('convertedState', convertedState);
+
+
+        // for (let i = 0; i < colors.length; i+= 4) {
+        //     colors[i] += 50;
+        //     colors[i+1] += 50;
+        //     colors[i+2] += 50;
+        //     colors[i+3] += 50;
+        //     // colors[i] = colors[i] ^ 255; // Invert Red
+        //     // colors[i+1] = colors[i+1] ^ 255; // Invert Green
+        //     // colors[i+2] = colors[i+2] ^ 255; // Invert Blue
+        // };
+
+        // var imgDataMod = ctx.createImageData(image.width, image.height);
+        ctx.putImageData(imgData, 0, 0);
+
+        let data = canvas.toDataURL();
+        // console.log(data);
+
+        let newImg = new Image();
+        newImg.src = data;
+
+        // let image = new Image();
+        // image.src = shareImage;
+        body.appendChild(newImg);
+
+        // console.log(colors[0]);
+        // console.log(colors[1]);
+        // console.log(colors[2]);
+        // console.log(colors[3]);
+        // console.log('-----');
+    };
+    image.src = baseImage;
+
+    const stateImage = image;
 
     return stateImage;
 }
@@ -91,8 +161,9 @@ let state = {
 }
 let shareImage = stateShareImage(state);
 let body = document.body;
-let image = new Image();
-image.src = shareImage;
-body.appendChild(image);
+// let image = new Image();
+// image.src = shareImage;
+// body.appendChild(image);
+// body.appendChild(shareImage);
 
 // console.log('shareImage', shareImage);
