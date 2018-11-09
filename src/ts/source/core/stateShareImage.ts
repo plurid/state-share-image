@@ -46,21 +46,33 @@ function stateShareImage(stateObject: Object) {
         ctx.drawImage(image, 0, 0);
 
         var imgData = ctx.getImageData(0, 0, image.width, image.height);
-        var colors = imgData.data;
+        var pixelColors = imgData.data;
 
-        // console.log(colors[0]);
-        // console.log(colors[1]);
-        // console.log(colors[2]);
-        // console.log(colors[3]);
+        // console.log(pixelColors[0]);
+        // console.log(pixelColors[1]);
+        // console.log(pixelColors[2]);
+        // console.log(pixelColors[3]);
         // console.log('-----');
 
         let i = 0;
+        let p = 0;
 
         // let convertedState = ''
 
         while (i < stateString.length) {
-            const char = convert.toBinary(stateString[i]);
-            console.log(char);
+            console.log('char', stateString[i]);
+
+            const binaryChar = convert.toBinary(stateString[i]);
+            console.log('binaryChar', binaryChar);
+
+            for (let bit of binaryChar) {
+                // encode the bit in the pixels
+                console.log(bit);
+            }
+
+            console.log('colors Pixel',  pixelColors[i]);
+            let colorsString = pixelColors[i].toString();
+            console.log('colors Pixel Binary', colorsString[0], convert.toBinary( colorsString[0] ));
 
             // const digit = convert.fromBinary(char);
             // convertedState += digit;
@@ -72,14 +84,14 @@ function stateShareImage(stateObject: Object) {
         // console.log('convertedState', convertedState);
 
 
-        // for (let i = 0; i < colors.length; i+= 4) {
-        //     colors[i] += 50;
-        //     colors[i+1] += 50;
-        //     colors[i+2] += 50;
-        //     colors[i+3] += 50;
-        //     // colors[i] = colors[i] ^ 255; // Invert Red
-        //     // colors[i+1] = colors[i+1] ^ 255; // Invert Green
-        //     // colors[i+2] = colors[i+2] ^ 255; // Invert Blue
+        // for (let i = 0; i < pixelColors.length; i+= 4) {
+        //     pixelColors[i] += 50;
+        //     pixelColors[i+1] += 50;
+        //     pixelColors[i+2] += 50;
+        //     pixelColors[i+3] += 50;
+        //     // pixelColors[i] = pixelColors[i] ^ 255; // Invert Red
+        //     // pixelColors[i+1] = pixelColors[i+1] ^ 255; // Invert Green
+        //     // pixelColors[i+2] = pixelColors[i+2] ^ 255; // Invert Blue
         // };
 
         // var imgDataMod = ctx.createImageData(image.width, image.height);
@@ -95,10 +107,10 @@ function stateShareImage(stateObject: Object) {
         // image.src = shareImage;
         body.appendChild(newImg);
 
-        // console.log(colors[0]);
-        // console.log(colors[1]);
-        // console.log(colors[2]);
-        // console.log(colors[3]);
+        // console.log(pixelColors[0]);
+        // console.log(pixelColors[1]);
+        // console.log(pixelColors[2]);
+        // console.log(pixelColors[3]);
         // console.log('-----');
     };
     image.src = baseImage;
