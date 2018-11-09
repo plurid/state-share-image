@@ -56,21 +56,20 @@ function stateShareImage(stateObject: Object) {
 
         let i = 0;
 
-        let convertedState = ''
+        // let convertedState = ''
 
         while (i < stateString.length) {
             const char = convert.toBinary(stateString[i]);
-            // const char = stateString[i].charCodeAt(0).toString(2);
             console.log(char);
 
-            const digit = convert.fromBinary(char);
-            convertedState += digit;
-            console.log(digit);
+            // const digit = convert.fromBinary(char);
+            // convertedState += digit;
+            // console.log(digit);
 
             i++;
         }
 
-        console.log('convertedState', convertedState);
+        // console.log('convertedState', convertedState);
 
 
         // for (let i = 0; i < colors.length; i+= 4) {
@@ -156,7 +155,8 @@ function stateShareImage(stateObject: Object) {
 
 let state = {
     app: {
-        theme: 'night'
+        theme: 'night',
+        multiByteChars: 'ăîșțâ€êé☻☃⁜𩸽𠜱👦✌️'
     }
 }
 let shareImage = stateShareImage(state);

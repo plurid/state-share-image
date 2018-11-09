@@ -19,8 +19,8 @@ export var convert = {
 
         str = str.replace(/\s+/g, '');
 
-        // Pretty (correct) print binary (add a space every 8 characters)
-        str = str.match(/.{1,8}/g).join(" ");
+        // Pretty (correct) print binary (add a space every 16 characters)
+        str = str.match(/.{1,16}/g).join(" ");
 
         var newBinary = str.split(" ");
         var binaryCode = [];
@@ -33,6 +33,6 @@ export var convert = {
     },
     zeroPad(binary: any) {
         // binary: String gives padStart error from TypeScript
-        return binary.padStart(32, '0');
+        return binary.padStart(16, '0');
     }
 };
