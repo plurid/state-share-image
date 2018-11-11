@@ -4,7 +4,7 @@
 
 
 
-# State Share Image
+# State-Share Image
 
 HTTP(S) State-Sharing Using Domain-Based Generated Image
 
@@ -39,7 +39,7 @@ And although the various named technologies have made the Internet way more usef
 
 ### Proposal
 
-The `State Share Image` proposes to encode the state of the application, the `JavaScript Object`, into an image. This image could then be saved as a bookmark, copy-pasted to other users, and so forth.
+The `State-Share Image` concept proposes to encode the state of the application, the `JavaScript Object`, into an image. This image could then be saved as a bookmark, copy-pasted to other users, and so forth.
 
 An application could use the default base image, or it's own logo/favicon. The application will pass the nude or encrypted `state` object to the `stateShareImage.encode()` method, and retrieve the new, slightly modified image.
 
