@@ -3,6 +3,9 @@ import { convert } from './convert';
 
 
 
+const defaultStegMethod = 'LSB';
+
+
 /**
  * stateShareImage.
  *      encode  :: returns image with encoded state object;
@@ -32,7 +35,7 @@ export const stateShareImage = {
         let baseImage = '';
         let stateString = ''
         if (method === undefined) {
-            method = 'LSB';
+            method = defaultStegMethod;
         }
 
         if (typeof stateObject === 'object') {
@@ -104,6 +107,7 @@ export const stateShareImage = {
             let data = canvas.toDataURL();
             let newImg = new Image();
             newImg.src = data;
+            newImg.height = 100;
             body.appendChild(newImg);
         };
         image.src = baseImage;
@@ -121,7 +125,7 @@ export const stateShareImage = {
      */
     decode(imageData: string, method?: string) {
         if (method === undefined) {
-            method = 'LSB';
+            method = defaultStegMethod;
         }
 
     }
