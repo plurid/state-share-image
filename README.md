@@ -40,7 +40,7 @@ And although the various named technologies have made the Internet way more usef
 
 The `State Share Image` proposes to encode the state of the application, the `JavaScript Object`, into an image. This image could then be saved as a bookmark, copy-pasted to other users, and so forth.
 
-An application could use the default base image, or it's own logo/favicon. The application will pass with the `state` object to the `stateShareImage()` function, and retrieve the new slightly modified image.
+An application could use the default base image, or it's own logo/favicon. The application will pass the nude or encrypted `state` object to the `stateShareImage.encode()` method, and retrieve the new, slightly modified image.
 
 The image could be displayed on the URL bar, or somewhere in the application.
 
@@ -68,7 +68,7 @@ Pass the `state` object to the `stateShareImage.encode()` method and then pass t
 
 For a secure state encoding and sharing process, the `state` object can be stringified and encrypted before passing it to the `stateShareImage.encode()` method.
 
-To obtain the `state` object from an image which encodes one, pass the image data to the `stateShareImage.decode()` method. If the `state` object was encrypted prior to encoding, it must be decrypted after receiving it from the method.
+To obtain the `state` object from an image which contains one, pass the image data to the `stateShareImage.decode()` method. If the `state` object was encrypted prior to encoding, it must be decrypted after receiving it from the method.
 
 The `<state-share-image>` element allows for easy manipulation (copy-pasting) of state images. It displays the image, a single click copies the image to clipboard as `data:image/png;base64`, a right click opens a contextual menu with the option to `Paste State Share Image` if a state share image was previously copied.
 
