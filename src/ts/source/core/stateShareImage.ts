@@ -4,178 +4,120 @@ import { convert } from './convert';
 
 
 /**
- * Convert the stateObject into a base64 image based on baseImage
+ * stateShareImage.
+ *      encode  :: returns image with encoded state object;
+ *      decode  :: from image gets the state object.
  *
- * @param stateObject   Application State Object
+ * Steganography methods:
+ *      LSB     :: least significant bit;
+ *      MSB     :: most significant bit;
+ *      DFT     :: discrete fourier transform;
+ *      DCT     :: discrete cosine transform;
+ *      DWT     :: discrete wavelet transform;
+ *      RSQ     :: random sequence generator;
+ *      CM      :: chaotic map;
+ *      ECC     :: error correction code;
+ *      SPIHTR  :: set partitioning in hierarchical tree references.
  */
-function stateShareImage(stateObject: Object) {
-    // to implement algorithms for mapping text-to-image
-    // LSB - least significant bit
-    // MSB - most significant bit
-    // DFT - discrete fourier transform
-    // DCT - discrete cosine transform
-    // DWT - discrete wavelet transform
-    // RSQ - random sequence generator
-    // CM  - chaotic map
-    // ECC - error correction code
-    // SPIHTR - set partitioning in hierarchical tree references
+export const stateShareImage = {
+    /**
+     * Convert the stateObject into a base64 image based on baseImage
+     *
+     * @param stateObject   Application State Object
+     */
+    encode(stateObject: Object) {
+        let baseImage = '';
+        const stateString = JSON.stringify(stateObject);
+        console.log('stateString', stateString);
 
-    let baseImage = '';
-    const stateString = JSON.stringify(stateObject);
-    console.log('stateString', stateString);
+        const domainImageMetaTag = document.querySelector('meta[property="state-share-image"]');
+        const domainImageSrc = domainImageMetaTag ? domainImageMetaTag.getAttribute('content') : '';
 
-    const domainImageMetaTag = document.querySelector('meta[property="state-share-image"]');
-    const domainImageSrc = domainImageMetaTag ? domainImageMetaTag.getAttribute('content') : '';
-
-    if (domainImageSrc) {
-        // const image = getImageDataURL(domainImageSrc);
-    } else {
-        baseImage = defaultBaseImage;
-    }
-
-    // console.log('baseImage', baseImage);
-
-
-    let image = new Image();
-    image.onload = function() {
-        let canvas = document.createElement("canvas");
-        let ctx = canvas.getContext("2d");
-        canvas.width = image.width;
-        canvas.height = image.height;
-
-        ctx.drawImage(image, 0, 0);
-
-        var imgData = ctx.getImageData(0, 0, image.width, image.height);
-        var pixelColors = imgData.data;
-
-        // console.log(pixelColors[0]);
-        // console.log(pixelColors[1]);
-        // console.log(pixelColors[2]);
-        // console.log(pixelColors[3]);
-        // console.log('-----');
-
-        let i = 0;
-        let p = 0;
-
-        // let convertedState = ''
-
-        while (i < stateString.length) {
-            console.log('char', stateString[i]);
-
-            const binaryChar = convert.toBinary(stateString[i]);
-            console.log('binaryChar', binaryChar);
-
-            for (let bit of binaryChar) {
-                // encode the bit in the pixels
-                console.log(bit);
-            }
-
-            console.log('colors Pixel',  pixelColors[i]);
-            let colorsString = pixelColors[i].toString();
-            console.log('colors Pixel Binary', colorsString[0], convert.toBinary( colorsString[0] ));
-
-            // const digit = convert.fromBinary(char);
-            // convertedState += digit;
-            // console.log(digit);
-
-            i++;
+        if (domainImageSrc) {
+            // const image = getImageDataURL(domainImageSrc);
+        } else {
+            baseImage = defaultBaseImage;
         }
+        // console.log('baseImage', baseImage);
 
-        // console.log('convertedState', convertedState);
+        let image = new Image();
+        image.onload = function() {
+            let canvas = document.createElement("canvas");
+            let ctx = canvas.getContext("2d");
+            canvas.width = image.width;
+            canvas.height = image.height;
+
+            ctx.drawImage(image, 0, 0);
+
+            var imgData = ctx.getImageData(0, 0, image.width, image.height);
+            var pixelColors = imgData.data;
+            console.log(pixelColors);
+
+            let i = 0;
+
+            let stateBits = '';
+
+            while (i < stateString.length) {
+                const binaryChar = convert.toBinary(stateString[i]);
+
+                stateBits += binaryChar;
+
+                i++;
+            }
+            console.log(stateBits);
 
 
-        // for (let i = 0; i < pixelColors.length; i+= 4) {
-        //     pixelColors[i] += 50;
-        //     pixelColors[i+1] += 50;
-        //     pixelColors[i+2] += 50;
-        //     pixelColors[i+3] += 50;
-        //     // pixelColors[i] = pixelColors[i] ^ 255; // Invert Red
-        //     // pixelColors[i+1] = pixelColors[i+1] ^ 255; // Invert Green
-        //     // pixelColors[i+2] = pixelColors[i+2] ^ 255; // Invert Blue
-        // };
+            var setBit = (number, location, bit) => {
+                return (number & ~(1 << location)) | (bit << location);
+            };
 
-        // var imgDataMod = ctx.createImageData(image.width, image.height);
-        ctx.putImageData(imgData, 0, 0);
+            // function dec2bin(dec){
+            //     return (dec >>> 0).toString(2);
+            // }
 
-        let data = canvas.toDataURL();
-        // console.log(data);
+            for (let i = 0; i < stateBits.length; i++) {
+                // let pixelBinary = dec2bin(pixelColors[i]);
+                let encodedPixel = setBit(pixelColors[i], 0, stateBits[i]);
+                // console.log('pixel value', pixelColors[i]);
+                // console.log('encoded pixel', encodedPixel);
 
-        let newImg = new Image();
-        newImg.src = data;
+                pixelColors[i] = encodedPixel;
+            }
+            console.log(pixelColors);
 
-        // let image = new Image();
-        // image.src = shareImage;
-        body.appendChild(newImg);
+            ctx.putImageData(imgData, 0, 0);
 
-        // console.log(pixelColors[0]);
-        // console.log(pixelColors[1]);
-        // console.log(pixelColors[2]);
-        // console.log(pixelColors[3]);
-        // console.log('-----');
-    };
-    image.src = baseImage;
+            let data = canvas.toDataURL();
+            let newImg = new Image();
+            newImg.src = data;
+            body.appendChild(newImg);
+        };
+        image.src = baseImage;
 
-    const stateImage = image;
+        const stateImage = image;
 
-    return stateImage;
+        return stateImage;
+    },
+
+    /**
+     * From image data get a state object
+     *
+     * @param imageData
+     */
+    decode(imageData: String) {
+
+    }
 }
 
 
 
-// function getImageDataURL(url) {
-//     let data, canvas, ctx;
-//     let img = new Image();
-
-//     img.onload = () => {
-//         canvas = document.createElement("canvas");
-//         canvas.width = img.width;
-//         canvas.height = img.height;
-
-//         ctx = canvas.getContext("2d");
-//         ctx.drawImage(img, 0, 0);
-
-//         try {
-//             data = canvas.toDataURL();
-//             // blob = dataURIToBlob(data);
-//             // console.log(data);
-//         } catch(e) {
-//             console.log(e);
-//         }
-//     };
-
-//     img.src = url;
-
-//     return data;
-// };
-
-
-// function dataURIToBlob (dataURI) {
-//     var byteString = atob(dataURI.split(',')[1]);
-//     var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-//     var ab = [];
-
-//     for (var i = 0; i < byteString.length; i++)
-//         ab.push(byteString.charCodeAt(i));
-
-//     return new Blob([new Uint8Array(ab)], { type: mimeString });
-// };
-
-
-
-
 // Exemplification
-
+let body = document.body;
 let state = {
     app: {
         theme: 'night',
         multiByteChars: 'ăîșțâ€êé☻☃⁜𩸽𠜱👦✌️'
     }
 }
-let shareImage = stateShareImage(state);
-let body = document.body;
-// let image = new Image();
-// image.src = shareImage;
-// body.appendChild(image);
-// body.appendChild(shareImage);
-
+let shareImage = stateShareImage.encode(state);
 // console.log('shareImage', shareImage);
