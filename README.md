@@ -18,7 +18,7 @@ In order to describe the place where we happen to be on the Internet at a certai
 
 This string of characters, the `URL`, can be used to identify the current location for ourselves at a later time (by saving it letter-for-letter in a record, somewhat misnamed, bookmark), or we can share it with others by copy-pasting.
 
-However, the Internet is not `like` a real-reality place, where a location (say, the marketplace of a small town) appears the same to whomever visits it. The Internet is dynamic, and even more, it is stateful. The same address (`URL`) might look entirely different from one user to another.
+However, the Internet is not `like` a real-reality place, where a location (say, the marketplace of a small town) appears the same to whomever visits it. The Internet is dynamic, and even more, it is stateful. The same address (`URL`) might look entirely different from one user to another, or to the same user at a different time.
 
 What changes the look and even the behavior of a certain `URL` is the state. The state can be a `JavaScript Object` which initializes the page when we first see it, and then changes according to our interactions. It could look like this
 
@@ -64,7 +64,11 @@ Define the base image within a `meta` tag
 
 If no image is defined, then the default one will be used.
 
-Pass the `state` object to the `stateShareImage()` function and then pass the returned image to the supplied `<state-share-image>` element or to another HTML element defined within the application.
+Pass the `state` object to the `stateShareImage.encode()` method and then pass the returned image to the supplied `<state-share-image>` element or to another HTML element defined within the application.
+
+For a secure state encoding and sharing process, the `state` object can be stringified and encrypted before passing it to the `stateShareImage.encode()` method.
+
+To obtain the `state` object from an image which encodes one, pass the image data to the `stateShareImage.decode()` method. If the `state` object was encrypted prior to encoding, it must be decrypted after receiving it from the method.
 
 The `<state-share-image>` element allows for easy manipulation (copy-pasting) of state images. It displays the image, a single click copies the image to clipboard as `data:image/png;base64`, a right click opens a contextual menu with the option to `Paste State Share Image` if a state share image was previously copied.
 
