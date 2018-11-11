@@ -21,14 +21,28 @@ import { convert } from './convert';
  */
 export const stateShareImage = {
     /**
-     * Convert the stateObject into a base64 image based on baseImage
+     * Encode the stateObject into an image using
+     * the steganography method, based on the baseImage
+     * or on the provided, domain image.
      *
-     * @param stateObject   Application State Object
+     * @param stateObject   Application State Object (nude<object> or encoded<string>)
+     * @param method        Steganography Method
      */
-    encode(stateObject: Object) {
+    encode(stateObject: object | string, method?: string) {
         let baseImage = '';
-        const stateString = JSON.stringify(stateObject);
-        console.log('stateString', stateString);
+        let stateString = ''
+        if (method === undefined) {
+            method = 'LSB';
+        }
+
+        if (typeof stateObject === 'object') {
+            stateString = JSON.stringify(stateObject);
+        }
+        if (typeof stateObject === 'string') {
+            stateString = stateObject
+        }
+
+        console.log('stateString:', stateString);
 
         const domainImageMetaTag = document.querySelector('meta[property="state-share-image"]');
         const domainImageSrc = domainImageMetaTag ? domainImageMetaTag.getAttribute('content') : '';
@@ -67,7 +81,7 @@ export const stateShareImage = {
             console.log(stateBits);
 
 
-            var setBit = (number, location, bit) => {
+            var setBit = (number: number, location: number, bit: any) => {
                 return (number & ~(1 << location)) | (bit << location);
             };
 
@@ -100,11 +114,15 @@ export const stateShareImage = {
     },
 
     /**
-     * From image data get a state object
+     * From image data get a state object if it was encoded nude
+     * or an encrypted string containing the state object.
      *
      * @param imageData
      */
-    decode(imageData: String) {
+    decode(imageData: string, method?: string) {
+        if (method === undefined) {
+            method = 'LSB';
+        }
 
     }
 }
