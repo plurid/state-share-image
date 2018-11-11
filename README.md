@@ -8,6 +8,7 @@
 
 HTTP(S) State-Sharing Using Domain-Based Generated Image
 
+Encode the state of an application into an image to be able to share or store it.
 
 
 ## Concept
