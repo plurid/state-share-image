@@ -14,8 +14,8 @@ Encode the state of an application into an image in order to be able to share or
 + [Concept](#concept)
     + [Current State](#current-state)
     + [Proposal](#proposal)
-    + [Technology](#technology)
-    + [Usage](#usage)
++ [Technology](#technology)
++ [Usage](#usage)
 
 
 
@@ -62,7 +62,7 @@ When the new, state-containing image is received by the application, it differen
 
 
 
-### Technology
+## Technology
 
 The stringified `state` object, nude or encrypted, is converted to binary code, 16 bits per character.
 
@@ -98,7 +98,7 @@ To decode the `state` object from the obtained `state-share image` the reverse o
 
 
 
-### Usage
+## Usage
 
 Add the `state-share-image` script to the application (or install with `npm`).
 
