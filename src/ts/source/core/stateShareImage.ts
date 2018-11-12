@@ -1,4 +1,4 @@
-import { defaultBaseImage } from './defaultBaseImage';
+import { defaultBaseImage, imageWithState } from './defaultBaseImage';
 import { convert } from './convert';
 
 
@@ -57,7 +57,7 @@ export const stateShareImage = {
         }
         // console.log('baseImage', baseImage);
 
-        let image = new Image();
+        const image = new Image();
         image.onload = function() {
             let canvas = document.createElement("canvas");
             let ctx = canvas.getContext("2d");
@@ -68,7 +68,7 @@ export const stateShareImage = {
 
             var imgData = ctx.getImageData(0, 0, image.width, image.height);
             var pixelColors = imgData.data;
-            console.log(pixelColors);
+            console.log('default image pixelColors', pixelColors);
 
             let i = 0;
 
@@ -81,12 +81,9 @@ export const stateShareImage = {
 
                 i++;
             }
-            console.log(stateBits);
+            console.log('stateBits', stateBits);
 
 
-            var setBit = (number: number, location: number, bit: any) => {
-                return (number & ~(1 << location)) | (bit << location);
-            };
 
             // function dec2bin(dec){
             //     return (dec >>> 0).toString(2);
@@ -100,7 +97,7 @@ export const stateShareImage = {
 
                 pixelColors[i] = encodedPixel;
             }
-            console.log(pixelColors);
+            console.log('encoded state pixelColors', pixelColors);
 
             ctx.putImageData(imgData, 0, 0);
 
@@ -127,10 +124,69 @@ export const stateShareImage = {
         if (method === undefined) {
             method = defaultStegMethod;
         }
+        let stateString = ''
 
+        const image = new Image();
+        image.onload = function() {
+            let canvas = document.createElement("canvas");
+            let ctx = canvas.getContext("2d");
+            canvas.width = image.width;
+            canvas.height = image.height;
+
+            ctx.drawImage(image, 0, 0);
+
+            var imgData = ctx.getImageData(0, 0, image.width, image.height);
+            var pixelColors = imgData.data;
+            console.log('image with state pixelColors', pixelColors);
+
+            // let i = 0;
+
+            // let stateBits = '';
+
+            // while (i < stateString.length) {
+            //     const binaryChar = convert.toBinary(stateString[i]);
+
+            //     stateBits += binaryChar;
+
+            //     i++;
+            // }
+            // console.log(stateBits);
+
+
+
+            // // function dec2bin(dec){
+            // //     return (dec >>> 0).toString(2);
+            // // }
+
+            // for (let i = 0; i < stateBits.length; i++) {
+            //     // let pixelBinary = dec2bin(pixelColors[i]);
+            //     let encodedPixel = setBit(pixelColors[i], 0, stateBits[i]);
+            //     // console.log('pixel value', pixelColors[i]);
+            //     // console.log('encoded pixel', encodedPixel);
+
+            //     pixelColors[i] = encodedPixel;
+            // }
+            // console.log(pixelColors);
+
+            // ctx.putImageData(imgData, 0, 0);
+
+            // let data = canvas.toDataURL();
+            // let newImg = new Image();
+            // newImg.src = data;
+            // newImg.height = 100;
+            // body.appendChild(newImg);
+        };
+        image.src = imageData;
+
+        return stateString;
     }
 }
 
+
+
+function setBit (number: number, location: number, bit: any) {
+    return (number & ~(1 << location)) | (bit << location);
+};
 
 
 // Exemplification
@@ -143,3 +199,10 @@ let state = {
 }
 let shareImage = stateShareImage.encode(state);
 // console.log('shareImage', shareImage);
+
+let encodedState = stateShareImage.decode('./state.png');
+
+// let newImg = new Image();
+// newImg.src = './state.png';
+// newImg.height = 100;
+// body.appendChild(newImg);
