@@ -51,7 +51,7 @@ The `State-Share Image` concept proposes to encode the state of the application,
 
 An application could use the default base image, or it's own logo/favicon. The application will pass the nude or encrypted `state` object to the `stateShareImage.encode()` method, and retrieve the new, slightly modified image.
 
-The image could be displayed on the URL bar, or somewhere in the application.
+The image could be displayed on the URL bar (if `state-share image` is implemented at the browser level), or somewhere in the application.
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/fav-url-state-img.png" width="60%">
