@@ -8,7 +8,7 @@
 
 HTTP(S) State-Sharing Using Domain-Based Generated Image
 
-Encode the state of an application into an image to be able to share or store it.
+Encode the state of an application into an image in order to be able to share or store it.
 
 
 ## Concept
@@ -51,6 +51,37 @@ The image could be displayed on the URL bar, or somewhere in the application.
 </p>
 
 When the new, state-containing image is received by the application, it differentiates the base image and transforms the difference from image to the `state` object.
+
+
+
+### Technology
+
+The stringified `state` object, nude or encrypted, is converted to binary code, 16 bits per character.
+
+The `state` object
+
+    {
+        app: {
+            theme: 'night'
+        }
+    }
+
+becomes
+
+    0000000001111011000000000010001000000000011000010000000001110000000000000111000000000000001000100000000000111010000000000111101100000000001000100000000001110100000000000110100000000000011001010000000001101101000000000110010100000000001000100000000000111010000000000010001000000000011011100000000001101001000000000110011100000000011010000000000001110100000000000010001000000000011111010000000001111101
+
+
+The used image (default or domain-based) is represented as an `Uint8ClampedArray` of the channels of each pixel `[R, G, B, A, R, G, B, A, ...]` (`Red`, `Green`, `Blue`, `Alpha`).
+
+The default base image has 16 million values (2000 pixels x 2000 pixels x 4 channels) and starts as
+
+    [88, 27, 56, 255, 88, 27, 56, 255, ... ]
+
+
+Each bit of the binary string of the `state` object is added to the binary value of each entry in the pixel's channels `Uint8ClampedArray`. The default steganographical method of addition is `LSB` (Least Significant Bit) which obtains a slightly, human-eye imperceptible modified image. Another method, specified at generation time, can be `MSB` (Most Significant Bit), and it will obtain an image deviated from the base image to a greater extent.
+
+To decode the `state` object from the obtained `state-share image` the reverse order of operations is applied.
+
 
 
 ### Usage
