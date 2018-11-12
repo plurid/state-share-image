@@ -11,6 +11,14 @@ HTTP(S) State-Sharing Using Domain-Based Generated Image
 Encode the state of an application into an image in order to be able to share or store it.
 
 
++ [Concept](#concept)
+    + [Current State](#current-state)
+    + [Proposal](#proposal)
+    + [Technology](#technology)
+    + [Usage](#usage)
+
+
+
 ## Concept
 
 ### Current State
@@ -79,7 +87,7 @@ and becomes
 
 The used image (default or domain-based) is represented as an `Uint8ClampedArray` of the channels of each pixel `[R, G, B, A, R, G, B, A, ...]` (`Red`, `Green`, `Blue`, `Alpha`).
 
-The default base image has 16 million values (2000 pixels ✕ 2000 pixels ✕ 4 channels), allowing for the unoptimized storage of 1 million `LSB`-based `state` string characters, and starts as
+The default base image has 16 million values (2000 pixels × 2000 pixels × 4 channels), allowing for the unoptimized storage of 1 million `LSB`-based `state` string characters, and starts as
 
     [88, 27, 56, 255, 88, 27, 56, 255, ... ]
 
