@@ -54,8 +54,8 @@ An application could use the default base image, or it's own logo/favicon. The a
 The image could be displayed on the URL bar, or somewhere in the application.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/fav-url-state-img.png" height="150px">
-    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/url-domain-based-state-img.png" height="150px">
+    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/fav-url-state-img.png" style="max-height:150px;">
+    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/url-domain-based-state-img.png"  style="max-height:150px;">
 </p>
 
 When the new, state-containing image is received by the application, it differentiates the base image and transforms the difference from image to the `state` object.
