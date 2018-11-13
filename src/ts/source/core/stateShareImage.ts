@@ -12,31 +12,28 @@ const defaultStegMethod = 'LSB';
  *      decode  :: from image gets the state object.
  *
  * Steganography methods:
- *      LSB     :: least significant bit;
- *      MSB     :: most significant bit;
- *      DFT     :: discrete fourier transform;
- *      DCT     :: discrete cosine transform;
- *      DWT     :: discrete wavelet transform;
- *      RSQ     :: random sequence generator;
- *      CM      :: chaotic map;
- *      ECC     :: error correction code;
- *      SPIHTR  :: set partitioning in hierarchical tree references.
+ *      LSB     :: Least Significant Bit;
+ *      MSB     :: Most Significant Bit;
+ *      DFT     :: Discrete Fourier Transform;
+ *      DCT     :: Discrete Cosine Transform;
+ *      DWT     :: Discrete Wavelet Transform;
+ *      RSQ     :: Random Sequence Generator;
+ *      CM      :: Chaotic Map;
+ *      ECC     :: Error Correction Code;
+ *      SPIHTR  :: Set Partitioning In Hierarchical Tree References.
  */
 export const stateShareImage = {
     /**
-     * Encode the stateObject into an image using
-     * the steganography method, based on the baseImage
-     * or on the provided, domain image.
+     * Encode the stateObject, nude or encrypted, into an image
+     * using the default or specified steganography method,
+     * based on the defaultBaseImage or on the provided, domain-specific image.
      *
-     * @param stateObject   Application State Object (nude<object> or encoded<string>)
-     * @param method        Steganography Method
+     * @param {object | string} stateObject     - Application State Object (nude<object> or encoded<string>)
+     * @param {string} [method = 'LSB']         - (Optional) Steganography Method. Default is 'LSB'.
      */
-    encode(stateObject: object | string, method?: string) {
+    encode(stateObject: object | string, method = defaultStegMethod): HTMLImageElement {
         let baseImage = '';
         let stateString = ''
-        if (method === undefined) {
-            method = defaultStegMethod;
-        }
 
         if (typeof stateObject === 'object') {
             stateString = JSON.stringify(stateObject);
@@ -118,12 +115,10 @@ export const stateShareImage = {
      * From image data get a state object if it was encoded nude
      * or an encrypted string containing the state object.
      *
-     * @param imageData
+     * @param {string} imageData            - Image
+     * @param {string} [method = 'LSB']     - (Optional) Steganography Method. Default is 'LSB'.
      */
-    decode(imageData: string, method?: string) {
-        if (method === undefined) {
-            method = defaultStegMethod;
-        }
+    decode(imageData: string, method = defaultStegMethod): string {
         let stateString = ''
 
         const image = new Image();
@@ -184,7 +179,7 @@ export const stateShareImage = {
 
 
 
-function setBit (number: number, location: number, bit: any) {
+function setBit(number: number, location: number, bit: any): number {
     return (number & ~(1 << location)) | (bit << location);
 };
 
