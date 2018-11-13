@@ -15,7 +15,7 @@ const path = require('path');
 module.exports = {
     mode: 'development',
     // mode: 'production',
-    entry: './app.js',
+    entry: './app.ts',
     output: {
         filename: `${appName}.js`,
         path: path.resolve(__dirname, `${appName}/js`)
