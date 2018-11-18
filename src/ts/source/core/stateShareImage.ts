@@ -6,6 +6,7 @@ import { convert } from './convert';
 const defaultStegMethod = 'LSB';
 
 
+
 /**
  * stateShareImage.
  *      encode  :: returns image with encoded state object;
@@ -201,6 +202,3 @@ let encodedState = stateShareImage.decode('./state.png');
 // newImg.src = './state.png';
 // newImg.height = 100;
 // body.appendChild(newImg);
-
-
-// console.log(convert.fromBinary('0000000001000001'));
