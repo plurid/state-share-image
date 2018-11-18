@@ -56,7 +56,11 @@ module.exports = {
     // globalTeardown: null,
 
     // A set of global variables that need to be available in all test environments
-    // globals: {},
+    "globals": {
+        "ts-jest": {
+          "diagnostics": false
+        }
+    },
 
     // An array of directory names to be searched recursively up from the requiring module's location
     // moduleDirectories: [
@@ -137,6 +141,8 @@ module.exports = {
 
     // The glob patterns Jest uses to detect test files
     testMatch: [
+        "**/__tests__/**/*.js?(x)",
+        "**/?(*.)+(spec|test).js?(x)",
         "**/__tests__/**/*.ts?(x)",
         "**/?(*.)+(spec|test).ts?(x)"
     ],
@@ -162,7 +168,10 @@ module.exports = {
     // timers: "real",
 
     // A map from regular expressions to paths to transformers
-    // transform: null,
+    transform: {
+        "^.+\\.js$": "ts-jest",
+        "^.+\\.ts$": "ts-jest"
+    },
 
     // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
     // transformIgnorePatterns: [
@@ -181,3 +190,22 @@ module.exports = {
     // Whether to use watchman for file crawling
     // watchman: true,
 };
+
+
+// module.exports = {
+//     "roots": [
+//       "<rootDir>/test"
+//     ],
+//     "transform": {
+//       "^.+\\.tsx?$": "ts-jest"
+//     },
+//     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+//     "moduleFileExtensions": [
+//       "ts",
+//       "tsx",
+//       "js",
+//       "jsx",
+//       "json",
+//       "node"
+//     ],
+//   }
