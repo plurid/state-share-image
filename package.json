@@ -12,6 +12,7 @@
     "scripts": {
         "build": "webpack",
         "test": "jest ./test/unit/",
+        "test:coverage": "open ./coverage/index.html",
         "watch": "webpack --watch"
     },
     "devDependencies": {
