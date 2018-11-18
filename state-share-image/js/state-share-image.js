@@ -126,7 +126,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!**********************************************************!*\
   !*** ./node_modules/@polymer/lit-element/lit-element.js ***!
   \**********************************************************/
-/*! exports provided: html, svg, LitElement, notEqual, UpdatingElement, customElement, property, query, queryAll, eventOptions */
+/*! exports provided: notEqual, UpdatingElement, customElement, property, query, queryAll, eventOptions, html, svg, LitElement */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -304,7 +304,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!*******************************************!*\
   !*** ./node_modules/lit-html/lit-html.js ***!
   \*******************************************/
-/*! exports provided: html, svg, TemplateResult, SVGTemplateResult, marker, nodeMarker, markerRegex, rewritesStyleAttribute, Template, isTemplatePartActive, createMarker, lastAttributeNameRegex, DefaultTemplateProcessor, defaultTemplateProcessor, TemplateInstance, noChange, isPrimitive, AttributeCommitter, AttributePart, NodePart, BooleanAttributePart, PropertyCommitter, PropertyPart, EventPart, isCEPolyfill, reparentNodes, removeNodes, directive, isDirective, parts, render, templateFactory, templateCaches */
+/*! exports provided: TemplateResult, SVGTemplateResult, marker, nodeMarker, markerRegex, rewritesStyleAttribute, Template, isTemplatePartActive, createMarker, lastAttributeNameRegex, DefaultTemplateProcessor, defaultTemplateProcessor, TemplateInstance, noChange, isPrimitive, AttributeCommitter, AttributePart, NodePart, BooleanAttributePart, PropertyCommitter, PropertyPart, EventPart, isCEPolyfill, reparentNodes, removeNodes, directive, isDirective, parts, render, templateFactory, templateCaches, html, svg */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
