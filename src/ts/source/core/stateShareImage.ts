@@ -28,8 +28,8 @@ export const stateShareImage = {
      * using the default or specified steganography method,
      * based on the defaultBaseImage or on the provided, domain-specific image.
      *
-     * @param {object | string} stateObject     - Application State Object (nude<object> or encoded<string>)
-     * @param {string} [method = 'LSB']         - (Optional) Steganography Method. Default is 'LSB'.
+     * @param stateObject     - Application State Object (nude<object> or encoded<string>)
+     * @param method          - (Optional) Steganography Method. Default is 'LSB'.
      */
     encode(stateObject: object | string, method = defaultStegMethod): HTMLImageElement {
         let baseImage = '';
@@ -42,7 +42,7 @@ export const stateShareImage = {
             stateString = stateObject
         }
 
-        console.log('stateString:', stateString);
+        // console.log('stateString:', stateString);
 
         const domainImageMetaTag = document.querySelector('meta[property="state-share-image"]');
         const domainImageSrc = domainImageMetaTag ? domainImageMetaTag.getAttribute('content') : '';
@@ -65,7 +65,7 @@ export const stateShareImage = {
 
             var imgData = ctx.getImageData(0, 0, image.width, image.height);
             var pixelColors = imgData.data;
-            console.log('default image pixelColors', pixelColors);
+            // console.log('default image pixelColors', pixelColors);
 
             let i = 0;
 
@@ -78,7 +78,7 @@ export const stateShareImage = {
 
                 i++;
             }
-            console.log('stateBits', stateBits);
+            // console.log('stateBits', stateBits);
 
 
 
@@ -94,7 +94,7 @@ export const stateShareImage = {
 
                 pixelColors[i] = encodedPixel;
             }
-            console.log('encoded state pixelColors', pixelColors);
+            // console.log('encoded state pixelColors', pixelColors);
 
             ctx.putImageData(imgData, 0, 0);
 
@@ -115,8 +115,8 @@ export const stateShareImage = {
      * From image data get a state object if it was encoded nude
      * or an encrypted string containing the state object.
      *
-     * @param {string} imageData            - Image
-     * @param {string} [method = 'LSB']     - (Optional) Steganography Method. Default is 'LSB'.
+     * @param imageData     - Image
+     * @param method        - (Optional) Steganography Method. Default is 'LSB'.
      */
     decode(imageData: string, method = defaultStegMethod): string {
         let stateString = ''
@@ -201,3 +201,6 @@ let encodedState = stateShareImage.decode('./state.png');
 // newImg.src = './state.png';
 // newImg.height = 100;
 // body.appendChild(newImg);
+
+
+// console.log(convert.fromBinary('0000000001000001'));
