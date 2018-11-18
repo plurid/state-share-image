@@ -1,8 +1,9 @@
 interface IConvert {
-    toBinary(character: string);
-    fromBinary(binary: string);
-    zeroPad(binary: any);
+    toBinary(character: string): string;
+    fromBinary(binary: string): string;
+    zeroPad(binary: any): string;
 }
+
 
 
 export const convert: IConvert = {
@@ -12,11 +13,11 @@ export const convert: IConvert = {
      *
      * @param character
      */
-    toBinary(character: String) {
-        return character.replace(/[\s\S]/g, (character) => {
-            return convert.zeroPad(character.charCodeAt(0).toString(2));
-        });
+    toBinary(character) {
+        // return convert.zeroPad(character.charCodeAt(0).toString(2));
+        return convert.zeroPad(character.codePointAt(0).toString(2));
     },
+
 
     /**
      * Converts from binary string to string character.
@@ -24,9 +25,11 @@ export const convert: IConvert = {
      *
      * @param binary
      */
-    fromBinary(binary: string) {
-        return String.fromCharCode(parseInt(binary, 2))
+    fromBinary(binary) {
+        // return String.fromCharCode(parseInt(binary, 2));
+        return String.fromCodePoint(parseInt(binary, 2));
     },
+
 
      /**
      * Pads string with 0 (16 bits).
@@ -36,7 +39,7 @@ export const convert: IConvert = {
      *
      * @param binary
      */
-    zeroPad(binary: any) {
-        return binary.padStart(16, '0');
+    zeroPad(binary) {
+        return binary.padStart(32, '0');
     }
 };
