@@ -12,11 +12,10 @@ describe('core > stateShareImage<object>', () => {
 
     // stateShareImage.encode();
     describe('stateShareImage.encode()', () => {
-        test('FALSE should encode image with state object', () => {
-            const testValue = 'A';
-
-            // const result = stateShareImage.encode(testValue);
-            const result = 'A';
+        test('should encode the default baseImage with the testState object', () => {
+            // console.log(stateShareImage);
+            const result = stateShareImage.encode(testState);
+            // const result = 'A';
 
             expect(result).toEqual('A');
         });
@@ -25,14 +24,11 @@ describe('core > stateShareImage<object>', () => {
 
 
     // stateShareImage.decode();
-    describe('stateShareImage.decode()', () => {
-        test('FALSE should decode state object from image', () => {
-            const testValue = 'A';
+    // describe('stateShareImage.decode()', () => {
+    //     test('should decode state object from image', () => {
+    //         const result = stateShareImage.decode();
 
-            // const result = stateShareImage.decode(testValue);
-            const result = 'A';
-
-            expect(result).toEqual('A');
-        });
-    });
+    //         expect(result).toEqual('');
+    //     });
+    // });
 });
