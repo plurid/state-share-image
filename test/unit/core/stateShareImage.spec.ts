@@ -1,5 +1,7 @@
 import { stateShareImage } from '../../../src/ts/source/core/stateShareImage';
 
+import { defaultBaseImageEncodedWithTestState } from './imagesData';
+
 
 
 describe('core > stateShareImage<object>', () => {
@@ -11,16 +13,21 @@ describe('core > stateShareImage<object>', () => {
     }
 
     // stateShareImage.encode();
-    describe('stateShareImage.encode()', () => {
-        test('should encode the default baseImage with the testState object', () => {
-            // console.log(stateShareImage);
+    describe('stateShareImage.encode(stateObject)', () => {
+        test('should return a base64 image source data string', () => {
             const result = stateShareImage.encode(testState);
-            // const result = 'A';
 
-            expect(result).toEqual('A');
+            expect(result).toMatch(/data:image\/png;base64/);
         });
     });
 
+    describe('stateShareImage.encode()', () => {
+        test('should encode the defaultBaseImage with the testState object and return base64 image source data string', () => {
+            const result = stateShareImage.encode(testState);
+
+            expect(result).toEqual(defaultBaseImageEncodedWithTestState);
+        });
+    });
 
 
     // stateShareImage.decode();

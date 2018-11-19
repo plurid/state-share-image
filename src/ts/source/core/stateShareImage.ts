@@ -32,7 +32,7 @@ interface IStateShareImage {
      * @param stateObject     - Application State Object (nude<object> or encoded<string>)
      * @param method          - (Optional) Steganography Method. Default is 'LSB'.
      */
-    encode(stateObject: object | string, method?: string): HTMLImageElement;
+    encode(stateObject: object | string, method?: string): string;
 
 
     /**
@@ -50,6 +50,7 @@ interface IStateShareImage {
      */
     encrypt(stateObject: object | string, publicKey: string): string;
 
+
     /**
      * Decrypt the stateObject after decoding it from the image.
      */
@@ -60,13 +61,13 @@ interface IStateShareImage {
 export const stateShareImage: IStateShareImage = {
     encode(stateObject, method = defaultStegMethod) {
         let baseImage = '';
-        let stateString = ''
+        let stateString = '';
 
         if (typeof stateObject === 'object') {
             stateString = JSON.stringify(stateObject);
         }
         if (typeof stateObject === 'string') {
-            stateString = stateObject
+            stateString = stateObject;
         }
 
         // console.log('stateString:', stateString);
@@ -135,7 +136,8 @@ export const stateShareImage: IStateShareImage = {
 
         const stateImage = image;
 
-        return stateImage;
+        // console.log(stateImage.src);
+        return stateImage.src;
     },
 
     decode(imageData, method = defaultStegMethod) {
