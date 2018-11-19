@@ -23,7 +23,7 @@ const defaultStegMethod = 'LSB';
  *      ECC     :: Error Correction Code;
  *      SPIHTR  :: Set Partitioning In Hierarchical Tree References.
  */
-export const stateShareImage = {
+interface IStateShareImage {
     /**
      * Encode the stateObject, nude or encrypted, into an image
      * using the default or specified steganography method,
@@ -32,7 +32,33 @@ export const stateShareImage = {
      * @param stateObject     - Application State Object (nude<object> or encoded<string>)
      * @param method          - (Optional) Steganography Method. Default is 'LSB'.
      */
-    encode(stateObject: object | string, method = defaultStegMethod): HTMLImageElement {
+    encode(stateObject: object | string, method?: string): HTMLImageElement;
+
+
+    /**
+     * From image data get a state object if it was encoded nude
+     * or an encrypted string containing the state object.
+     *
+     * @param imageData     - Image
+     * @param method        - (Optional) Steganography Method. Default is 'LSB'.
+     */
+    decode(imageData: string, method?: string): string;
+
+
+    /**
+     * Encrypt the stateObject before encoding it into the image.
+     */
+    encrypt(stateObject: object | string, publicKey: string): string;
+
+    /**
+     * Decrypt the stateObject after decoding it from the image.
+     */
+    decrypt(encryptedString: string, privateKey: string): string;
+}
+
+
+export const stateShareImage: IStateShareImage = {
+    encode(stateObject, method = defaultStegMethod) {
         let baseImage = '';
         let stateString = ''
 
@@ -112,14 +138,7 @@ export const stateShareImage = {
         return stateImage;
     },
 
-    /**
-     * From image data get a state object if it was encoded nude
-     * or an encrypted string containing the state object.
-     *
-     * @param imageData     - Image
-     * @param method        - (Optional) Steganography Method. Default is 'LSB'.
-     */
-    decode(imageData: string, method = defaultStegMethod): string {
+    decode(imageData, method = defaultStegMethod) {
         let stateString = ''
 
         const image = new Image();
@@ -175,6 +194,18 @@ export const stateShareImage = {
         image.src = imageData;
 
         return stateString;
+    },
+
+    encrypt(stateObject, publicKey) {
+        let encryptedState = '';
+
+        return encryptedState;
+    },
+
+    decrypt(encryptedString, privateKey) {
+        let decryptedState = '';
+
+        return decryptedState;
     }
 }
 
