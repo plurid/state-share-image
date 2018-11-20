@@ -24,7 +24,7 @@ export function stateDecode(stateImage: HTMLImageElement,
     ctxStateImage.drawImage(stateImage, 0, 0);
     let imgDataStateImage = ctxStateImage.getImageData(0, 0, stateImage.width, stateImage.height);
     let pixelColorsStateImage = imgDataStateImage.data;
-    // console.log('pixelColorsStateImage', pixelColorsStateImage);
+    console.log('pixelColorsStateImage', pixelColorsStateImage);
 
 
     // Base Image
@@ -35,21 +35,23 @@ export function stateDecode(stateImage: HTMLImageElement,
     ctxBaseImage.drawImage(baseImage, 0, 0);
     let imgDataBaseImage = ctxBaseImage.getImageData(0, 0, baseImage.width, baseImage.height);
     let pixelColorsBaseImage = imgDataBaseImage.data;
-    // console.log('pixelColorsBaseImage', pixelColorsBaseImage);
+    console.log('pixelColorsBaseImage', pixelColorsBaseImage);
 
 
     // Compute
     const stateStringLengthBinary = computeStateStringLengthBinary(
                                         pixelColorsStateImage,
-                                        pixelColorsBaseImage);
-    // console.log('stateStringLengthBinary', stateStringLengthBinary);
+                                        pixelColorsBaseImage,
+                                        method);
+    console.log('stateStringLengthBinary', stateStringLengthBinary);
     const stateStringLength = convert.numFromBinary(stateStringLengthBinary);
-    // console.log('stateStringLength', stateStringLength);
+    console.log('stateStringLength', stateStringLength);
     const stateStringBinary = computeStateStringBinary(
                                         pixelColorsStateImage,
                                         pixelColorsBaseImage,
-                                        stateStringLength);
-    // console.log('stateStringBinary', [stateStringBinary]);
+                                        stateStringLength,
+                                        method);
+    // console.log('stateStringBinary', stateStringBinary);
     const stateArrayBinary = computeStateArrayBinary(stateStringBinary);
     // console.log('stateArrayBinary', [stateArrayBinary]);
     const stateString = computeStateString(stateArrayBinary);
@@ -60,10 +62,24 @@ export function stateDecode(stateImage: HTMLImageElement,
 
 function computeStateStringLengthBinary(
                 pixelColorsStateImage: Uint8ClampedArray,
-                pixelColorsBaseImage: Uint8ClampedArray): string {
+                pixelColorsBaseImage: Uint8ClampedArray,
+                method: string): string {
     let stateStringLengthBinary = '';
     for (let i = 0; i < WORDSIZE; i++) {
-        let char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
+        let char;
+
+        switch(method) {
+            case 'LSB':
+                char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
+                break;
+            case 'MSB':
+                // ???
+                // console.log(pixelColorsStateImage[i]);
+                // console.log(pixelColorsBaseImage[i]);
+                char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
+                break;
+        }
+
         stateStringLengthBinary += char;
     }
     return stateStringLengthBinary;
@@ -73,10 +89,22 @@ function computeStateStringLengthBinary(
 function computeStateStringBinary(
                 pixelColorsStateImage: Uint8ClampedArray,
                 pixelColorsBaseImage: Uint8ClampedArray,
-                stateStringLength: number): string {
-    let stateStringBinary = ''
+                stateStringLength: number,
+                method: string): string {
+    let stateStringBinary = '';
     for (let i = WORDSIZE; i < stateStringLength + WORDSIZE; i++) {
-        let char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
+        let char;
+
+        switch(method) {
+            case 'LSB':
+                char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
+                break;
+            case 'MSB':
+                // ???
+                char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
+                break;
+        }
+
         stateStringBinary += char;
     }
     return stateStringBinary;
@@ -86,7 +114,7 @@ function computeStateStringBinary(
 function computeStateArrayBinary(stateStringBinary: string): Array<string> {
     let stateArrayBinary = [];
     for (let i = 0; i < stateStringBinary.length / WORDSIZE; i++ ) {
-        let val = stateStringBinary.substring(WORDSIZE * i, WORDSIZE * (i+1));
+        const val = stateStringBinary.substring(WORDSIZE * i, WORDSIZE * (i+1));
         stateArrayBinary.push(val);
     }
     return stateArrayBinary;
