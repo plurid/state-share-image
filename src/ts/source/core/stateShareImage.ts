@@ -1,4 +1,7 @@
-import { defaultBaseImage, imageWithState } from './defaultBaseImage';
+import { defaultBaseImage,
+         imageWithState,
+         invertedImageWithState,
+         domainImageWithState } from './defaultBaseImage';
 import { stateEncode, stateDecode } from './utils';
 
 
@@ -64,7 +67,7 @@ export const stateShareImage: IStateShareImage = {
         const stateString = typeof stateObject === 'object'
                                 ? JSON.stringify(stateObject)
                                 : stateObject;
-        // console.log('stateString:', stateString);
+        console.log('stateString:', stateString);
 
         const domainImageMetaTag = document.querySelector('meta[property="state-share-image"]');
         const domainImageSrc = domainImageMetaTag ? domainImageMetaTag.getAttribute('content') : '';
@@ -86,7 +89,7 @@ export const stateShareImage: IStateShareImage = {
     decode(imageData, method = defaultStegMethod) {
         const domainImageMetaTag = document.querySelector('meta[property="state-share-image"]');
         const domainImageSrc = domainImageMetaTag ? domainImageMetaTag.getAttribute('content') : '';
-        const baseImageSrc = domainImageSrc ? domainImageSrc : defaultBaseImage
+        const baseImageSrc = domainImageSrc ? domainImageSrc : defaultBaseImage;
 
         return new Promise((resolve, reject) => {
             let stateImage = new Image();
@@ -160,6 +163,7 @@ async function testDecode() {
     // console.log('decryptedState', decryptedState);
 
     let encodedState = await stateShareImage.decode(imageWithState);
-    // console.log('encodedState', encodedState);
+    // let encodedState = await stateShareImage.decode(invertedImageWithState);
+    console.log('encodedState', encodedState);
 }
 testDecode();
