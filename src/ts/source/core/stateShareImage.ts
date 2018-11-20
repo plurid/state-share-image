@@ -5,6 +5,8 @@ import { defaultBaseImage,
          domainImageWithState } from './defaultBaseImage';
 import { stateEncode } from './encode';
 import { stateDecode } from './decode';
+import { stateEncrypt } from './encrypt';
+import { stateDecrypt } from './decrypt';
 
 
 const defaultStegMethod = 'LSB';
@@ -115,15 +117,11 @@ export const stateShareImage: IStateShareImage = {
         const stateString = typeof stateObject === 'object'
                                 ? JSON.stringify(stateObject)
                                 : stateObject;
-        let encryptedState = '';
-
-        return encryptedState;
+        return stateEncrypt(stateString, publicKey);
     },
 
     decrypt(encryptedString, privateKey) {
-        let decryptedState = '';
-
-        return decryptedState;
+        return stateDecrypt(encryptedString, privateKey);
     }
 }
 
@@ -139,8 +137,9 @@ const state = {
 }
 
 async function testEncode() {
-    const method = 'MSB';
-    // const publicKey = '';
+    // const method = 'MSB';
+
+    // const publicKey = 'test';
     // const encryptedState = stateShareImage.encrypt(state, publicKey);
     // console.log('encryptedState', encryptedState);
     // const shareImageEncrypted = await stateShareImage.encode(encryptedState);
@@ -160,11 +159,12 @@ testEncode();
 
 
 async function testDecode() {
-    const method = 'MSB';
+    // const method = 'MSB';
 
+    // const encryptedState = 'testing';
     // const encryptedState = await stateShareImage.decode(<encrypted-image>);
     // console.log('encryptedState', encryptedState);
-    // const privateKey = '';
+    // const privateKey = 'test';
     // const decryptedState = stateShareImage.decrypt(encryptedState, privateKey);
     // console.log('decryptedState', decryptedState);
 
