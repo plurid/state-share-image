@@ -14,18 +14,18 @@ describe('core > stateShareImage<object>', () => {
 
     // stateShareImage.encode();
     describe('stateShareImage.encode(stateObject)', () => {
-        test('should return a base64 image source data string', () => {
+        test('should resolve to a base64 image source data string', () => {
             const result = stateShareImage.encode(testState);
 
-            expect(result).toMatch(/data:image\/png;base64/);
+            expect(result).resolves.toMatch(/data:image\/png;base64/);
         });
     });
 
-    describe('stateShareImage.encode()', () => {
-        test('should encode the defaultBaseImage with the testState object and return base64 image source data string', () => {
+    describe('stateShareImage.encode(stateObject)', () => {
+        test('should encode the defaultBaseImage with the testState object and resolve to a base64 image source data string', () => {
             const result = stateShareImage.encode(testState);
 
-            expect(result).toEqual(defaultBaseImageEncodedWithTestState);
+            expect(result).resolves.toEqual(defaultBaseImageEncodedWithTestState);
         });
     });
 
