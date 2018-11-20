@@ -84,13 +84,25 @@ export const stateShareImage: IStateShareImage = {
     },
 
     decode(imageData, method = defaultStegMethod) {
+        const domainImageMetaTag = document.querySelector('meta[property="state-share-image"]');
+        const domainImageSrc = domainImageMetaTag ? domainImageMetaTag.getAttribute('content') : '';
+        const baseImageSrc = domainImageSrc ? domainImageSrc : defaultBaseImage
+
         return new Promise((resolve, reject) => {
-            let image = new Image();
-            image.onload = () => {
-                return resolve(stateDecode(image, method));
+            let stateImage = new Image();
+            stateImage.onload = () => {
+                return resolve(new Promise((resolve, reject) => {
+                        let baseImage = new Image();
+                        baseImage.onload = () => {
+                            return resolve(stateDecode(stateImage, baseImage, method));
+                        }
+                        baseImage.onerror = reject;
+                        baseImage.src = baseImageSrc;
+                    })
+                );
             }
-            image.onerror = reject;
-            image.src = imageData;
+            stateImage.onerror = reject;
+            stateImage.src = imageData;
         });
     },
 
@@ -129,7 +141,7 @@ async function testEncode() {
     // console.log('shareImageEncrypted', shareImageEncrypted);
 
     const shareImage = await stateShareImage.encode(state);
-    console.log('shareImage', shareImage);
+    // console.log('shareImage', shareImage);
 
     // let newImg = new Image();
     // newImg.src = shareImage;
@@ -147,8 +159,7 @@ async function testDecode() {
     // const decryptedState = stateShareImage.decrypt(encryptedState, privateKey);
     // console.log('decryptedState', decryptedState);
 
-
     let encodedState = await stateShareImage.decode('./state.png');
-    console.log('encodedState', encodedState);
+    // console.log('encodedState', encodedState);
 }
 testDecode();
