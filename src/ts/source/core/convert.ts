@@ -23,7 +23,6 @@ export const convert: IConvert = {
     charToBinary(character) {
         return convert.zeroPad(character.codePointAt(0).toString(2));
     },
-
      /**
      * Converts a given number to a binary string and pads it with 0 (32 bits).
      * e.g., 1 to '00000000000000000000000000000001'
@@ -34,6 +33,7 @@ export const convert: IConvert = {
         return convert.zeroPad(number.toString(2));
     },
 
+
     /**
      * Converts from binary string to string character.
      * e.g., '00000000000000000000000001000001' to 'A'
@@ -43,7 +43,6 @@ export const convert: IConvert = {
     charFromBinary(binary) {
         return String.fromCodePoint(parseInt(binary, 2));
     },
-
     /**
      * Converts from binary string to number.
      * e.g., '00000000111101000010010000000000' to 16000000
