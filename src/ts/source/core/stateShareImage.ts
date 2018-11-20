@@ -2,7 +2,8 @@ import { defaultBaseImage,
          imageWithState,
          invertedImageWithState,
          domainImageWithState } from './defaultBaseImage';
-import { stateEncode, stateDecode } from './utils';
+import { stateEncode } from './encode';
+import { stateDecode } from './decode';
 
 
 const defaultStegMethod = 'LSB';
