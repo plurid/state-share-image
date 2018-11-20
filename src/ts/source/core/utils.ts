@@ -69,7 +69,7 @@ export function stateDecode(stateImage: HTMLImageElement,
 
     let imgDataStateImage = ctxStateImage.getImageData(0, 0, stateImage.width, stateImage.height);
     let pixelColorsStateImage = imgDataStateImage.data;
-    // console.log('default image pixelColorsStateImage', pixelColorsStateImage);
+    console.log('default image pixelColorsStateImage', pixelColorsStateImage);
 
 
     let canvasBaseImage = document.createElement('canvas');
@@ -80,7 +80,7 @@ export function stateDecode(stateImage: HTMLImageElement,
 
     let imgDataBaseImage = ctxBaseImage.getImageData(0, 0, baseImage.width, baseImage.height);
     let pixelColorsBaseImage = imgDataBaseImage.data;
-    // console.log('default image pixelColorsBaseImage', pixelColorsBaseImage);
+    console.log('default image pixelColorsBaseImage', pixelColorsBaseImage);
 
 
     let stateStringLengthBinary = '';
