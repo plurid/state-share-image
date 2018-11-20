@@ -6,7 +6,7 @@
 
 # State-Share Image
 
-HTTP(S) State-Sharing Using Domain-Based Steganographical Generated Image
+HTTP(S) Application State-Sharing Using Domain-Based Steganographical Generated Image
 
 Encode the `state` of an application into an image in order to be able to share it with others or store it for yourself.
 
