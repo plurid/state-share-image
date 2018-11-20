@@ -5,7 +5,7 @@ import { defaultBaseImageEncodedWithTestState } from './imagesData';
 
 
 describe('core > stateShareImage<object>', () => {
-    let testState = {
+    const testState = {
         app: {
             theme: 'night',
             multiByteChars: 'ăîșțâ€êé☻☃⁜𩸽𠜱👦✌️'
