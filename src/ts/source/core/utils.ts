@@ -29,15 +29,19 @@ export function stateEncode(image: HTMLImageElement,
         const binaryChar = convert.charToBinary(stateString[i]);
         stateBits += binaryChar;
     }
+    // console.log('stateBits', [stateBits]);
     const stateBitsLength = convert.numToBinary(stateBits.length);
+    // console.log('stateBitsLength', stateBitsLength);
+    // console.log('stateBits Length Before', stateBits.length);
     stateBits = stateBitsLength + stateBits;
+    // console.log('stateBits with Length', [stateBits]);
+    // console.log('stateBits Length After', stateBits.length);
+
     for (let i = 0; i < stateBits.length; i++) {
-        let encodedPixel = setBit(pixelColors[i], 0, stateBits[i]);
-        // console.log('pixel value', pixelColors[i]);
-        // console.log('encoded pixel', encodedPixel);
-        pixelColors[i] = encodedPixel;
+        pixelColors[i] = pixelColors[i] ^ parseInt(stateBits[i]);
     }
     // console.log('encoded state pixelColors', pixelColors);
+    // console.log('------------');
 
     ctx.putImageData(imgData, 0, 0);
 
@@ -56,8 +60,7 @@ export function stateEncode(image: HTMLImageElement,
 export function stateDecode(stateImage: HTMLImageElement,
                             baseImage: HTMLImageElement,
                             method: string): string {
-    let stateString = '';
-
+    const WORDSIZE = 32;
     let canvasStateImage = document.createElement('canvas');
     let ctxStateImage = canvasStateImage.getContext('2d');
     canvasStateImage.width = stateImage.width;
@@ -67,7 +70,6 @@ export function stateDecode(stateImage: HTMLImageElement,
     let imgDataStateImage = ctxStateImage.getImageData(0, 0, stateImage.width, stateImage.height);
     let pixelColorsStateImage = imgDataStateImage.data;
     // console.log('default image pixelColorsStateImage', pixelColorsStateImage);
-
 
 
     let canvasBaseImage = document.createElement('canvas');
@@ -81,63 +83,33 @@ export function stateDecode(stateImage: HTMLImageElement,
     // console.log('default image pixelColorsBaseImage', pixelColorsBaseImage);
 
 
-    var messageSizeBinary = '', pos = 0;
-    while (pos < 32) {
-        var bit = getBit(pixelColorsStateImage[pos], 0);
-        messageSizeBinary += bit;
-        // console.log(bit);
-        // messageSize = setBit(messageSize, pos, bit);
-        pos++;
+    let stateStringLengthBinary = '';
+    for (let i = 0; i < WORDSIZE; i++) {
+        let char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
+        stateStringLengthBinary += char;
     }
+    const stateStringLength = convert.numFromBinary(stateStringLengthBinary);
+    // console.log('stateStringLengthBinary', stateStringLengthBinary);
+    // console.log('stateStringLength', stateStringLength);
 
-    // console.log(messageSizeBinary)
+    let stateStringBinary = ''
+    for (let i = WORDSIZE; i < stateStringLength + WORDSIZE; i++) {
+        let char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
+        stateStringBinary += char;
+    }
+    // console.log('stateStringBinary', [stateStringBinary]);
 
-    // let stateStringLengthBinary = '';
+    let stateArrayBinary = [];
+    for (let i = 0; i < stateStringBinary.length / WORDSIZE; i++ ) {
+        let val = stateStringBinary.substring(WORDSIZE * i, WORDSIZE * (i+1));
+        stateArrayBinary.push(val);
+    }
+    // console.log('stateArrayBinary', [stateArrayBinary]);
 
-    // for (let i = 0; i < 16; i++) {
-    //     let char = pixelColorsBaseImage[i] - pixelColorsStateImage[i];
-    //     stateStringLengthBinary += char;
-    // }
-
-    // console.log(stateStringLengthBinary);
-
-
-
-    // for (let i = 0; i < stateString.length; i++) {
-    //     const binaryChar = convert.charToBinary(stateString[i]);
-    //     stateBits += binaryChar;
-    // }
-    // const stateBitsLength = convert.numToBinary(stateBits.length);
-    // stateBits = stateBitsLength + stateBits;
-    // for (let i = 0; i < stateBits.length; i++) {
-    //     let encodedPixel = setBit(pixelColors[i], 0, stateBits[i]);
-    //     // console.log('pixel value', pixelColors[i]);
-    //     // console.log('encoded pixel', encodedPixel);
-    //     pixelColors[i] = encodedPixel;
-    // }
-    // // console.log('encoded state pixelColors', pixelColors);
-
-    // ctx.putImageData(imgData, 0, 0);
-
-    // return canvas.toDataURL();
+    let stateString = '';
+    for (let i = 0; i < stateArrayBinary.length; i++) {
+        stateString += convert.charFromBinary(stateArrayBinary[i]);
+    }
 
     return stateString;
 }
-
-
-/**
- * Sets bit.
- *
- * @param number
- * @param location
- * @param number
- * @returns {number}
- */
-function setBit(number: number, location: number, bit: any): number {
-    return (number & ~(1 << location)) | (bit << location);
-};
-
-
-function getBit(number, location) {
-    return ((number >> location) & 1);
-};
