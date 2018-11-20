@@ -143,10 +143,10 @@ async function testEncode() {
     const shareImage = await stateShareImage.encode(state);
     // console.log('shareImage', shareImage);
 
-    // let newImg = new Image();
-    // newImg.src = shareImage;
-    // newImg.height = 100;
-    // body.appendChild(newImg);
+    let newImg = new Image();
+    newImg.src = shareImage;
+    newImg.height = 100;
+    body.appendChild(newImg);
 }
 testEncode();
 
@@ -159,7 +159,7 @@ async function testDecode() {
     // const decryptedState = stateShareImage.decrypt(encryptedState, privateKey);
     // console.log('decryptedState', decryptedState);
 
-    let encodedState = await stateShareImage.decode('./state.png');
+    let encodedState = await stateShareImage.decode(imageWithState);
     // console.log('encodedState', encodedState);
 }
 testDecode();
