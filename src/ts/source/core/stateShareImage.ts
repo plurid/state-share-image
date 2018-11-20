@@ -32,7 +32,7 @@ interface IStateShareImage {
      * @param stateObject     - Application State Object (nude<object> or encoded<string>)
      * @param method          - (Optional) Steganography Method. Default is 'LSB'.
      */
-    encode(stateObject: object | string, method?: string): string;
+    encode(stateObject: object | string, method?: string): Promise<string>;
 
 
     /**
@@ -60,84 +60,29 @@ interface IStateShareImage {
 
 export const stateShareImage: IStateShareImage = {
     encode(stateObject, method = defaultStegMethod) {
-        let baseImage = '';
-        let stateString = '';
-
-        if (typeof stateObject === 'object') {
-            stateString = JSON.stringify(stateObject);
-        }
-        if (typeof stateObject === 'string') {
-            stateString = stateObject;
-        }
-
+        const stateString = typeof stateObject === 'object'
+                                ? JSON.stringify(stateObject)
+                                : stateObject;
         // console.log('stateString:', stateString);
 
         const domainImageMetaTag = document.querySelector('meta[property="state-share-image"]');
         const domainImageSrc = domainImageMetaTag ? domainImageMetaTag.getAttribute('content') : '';
+        // console.log(domainImageSrc);
 
-        if (domainImageSrc) {
-            // const image = getImageDataURL(domainImageSrc);
-        } else {
-            baseImage = defaultBaseImage;
-        }
-        // console.log('baseImage', baseImage);
+        const baseImageSrc = domainImageSrc ? domainImageSrc : defaultBaseImage
+        // console.log('baseImage', baseImageSrc);
 
-        const image = new Image();
-        image.onload = function() {
-            let canvas = document.createElement("canvas");
-            let ctx = canvas.getContext("2d");
-            canvas.width = image.width;
-            canvas.height = image.height;
 
-            ctx.drawImage(image, 0, 0);
+        return new Promise((resolve, reject) => {
+            let image = new Image();
+            image.onload = () => {
+                const data = imageEncode(image, stateString, method);
 
-            var imgData = ctx.getImageData(0, 0, image.width, image.height);
-            var pixelColors = imgData.data;
-            // console.log('default image pixelColors', pixelColors);
-
-            let i = 0;
-
-            let stateBits = '';
-
-            while (i < stateString.length) {
-                const binaryChar = convert.toBinary(stateString[i]);
-
-                stateBits += binaryChar;
-
-                i++;
+                return resolve(data);
             }
-            // console.log('stateBits', stateBits);
-
-
-
-            // function dec2bin(dec){
-            //     return (dec >>> 0).toString(2);
-            // }
-
-            for (let i = 0; i < stateBits.length; i++) {
-                // let pixelBinary = dec2bin(pixelColors[i]);
-                let encodedPixel = setBit(pixelColors[i], 0, stateBits[i]);
-                // console.log('pixel value', pixelColors[i]);
-                // console.log('encoded pixel', encodedPixel);
-
-                pixelColors[i] = encodedPixel;
-            }
-            // console.log('encoded state pixelColors', pixelColors);
-
-            ctx.putImageData(imgData, 0, 0);
-
-            let data = canvas.toDataURL();
-            let newImg = new Image();
-            newImg.src = data;
-            newImg.height = 100;
-            body.appendChild(newImg);
-        };
-        image.src = baseImage;
-
-        const stateImage = image;
-
-        // console.log(stateImage.src);
-        return stateImage.src;
+            image.onerror = reject;
+            image.src = baseImageSrc;
+        });
     },
 
     decode(imageData, method = defaultStegMethod) {
@@ -154,7 +99,7 @@ export const stateShareImage: IStateShareImage = {
 
             var imgData = ctx.getImageData(0, 0, image.width, image.height);
             var pixelColors = imgData.data;
-            console.log('image with state pixelColors', pixelColors);
+            // console.log('image with state pixelColors', pixelColors);
 
             // let i = 0;
 
@@ -199,6 +144,9 @@ export const stateShareImage: IStateShareImage = {
     },
 
     encrypt(stateObject, publicKey) {
+        const stateString = typeof stateObject === 'object'
+                                ? JSON.stringify(stateObject)
+                                : stateObject;
         let encryptedState = '';
 
         return encryptedState;
@@ -218,20 +166,75 @@ function setBit(number: number, location: number, bit: any): number {
 };
 
 
+
+function imageEncode(image: HTMLImageElement,
+                     stateString: string,
+                     method: string): string {
+    let canvas = document.createElement("canvas");
+    let ctx = canvas.getContext("2d");
+    canvas.width = image.width;
+    canvas.height = image.height;
+
+    ctx.drawImage(image, 0, 0);
+
+    var imgData = ctx.getImageData(0, 0, image.width, image.height);
+    var pixelColors = imgData.data;
+    // console.log('default image pixelColors', pixelColors);
+
+    let i = 0;
+
+    let stateBits = '';
+
+    while (i < stateString.length) {
+        const binaryChar = convert.toBinary(stateString[i]);
+        stateBits += binaryChar;
+        i++;
+    }
+
+    const stateBitsLength = convert.numberToBinary(stateBits.length);
+    stateBits = stateBitsLength + stateBits;
+
+    for (let i = 0; i < stateBits.length; i++) {
+        let encodedPixel = setBit(pixelColors[i], 0, stateBits[i]);
+        // console.log('pixel value', pixelColors[i]);
+        // console.log('encoded pixel', encodedPixel);
+        pixelColors[i] = encodedPixel;
+    }
+    // console.log('encoded state pixelColors', pixelColors);
+
+    ctx.putImageData(imgData, 0, 0);
+
+    return canvas.toDataURL();
+}
+
+
+
 // Exemplification
-let body = document.body;
-let state = {
+const body = document.body;
+const state = {
     app: {
         theme: 'night',
         multiByteChars: 'ăîșțâ€êé☻☃⁜𩸽𠜱👦✌️'
     }
 }
-let shareImage = stateShareImage.encode(state);
-// console.log('shareImage', shareImage);
 
-let encodedState = stateShareImage.decode('./state.png');
+async function testEncode() {
+    // const publicKey = '';
+    // const shareImageEncrypted = await stateShareImage.encode(
+    //                                 stateShareImage.encrypt(state, publicKey)
+    //                             );
+    // console.log('shareImageEncrypted', shareImageEncrypted);
 
-// let newImg = new Image();
-// newImg.src = './state.png';
-// newImg.height = 100;
-// body.appendChild(newImg);
+    const shareImage = await stateShareImage.encode(state);
+    console.log('shareImage', shareImage);
+
+    // let newImg = new Image();
+    // newImg.src = shareImage;
+    // newImg.height = 100;
+    // body.appendChild(newImg);
+}
+testEncode();
+
+
+// let encodedState = stateShareImage.decode('./state.png');
+// console.log('encodedState', encodedState);

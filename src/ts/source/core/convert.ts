@@ -1,6 +1,8 @@
 interface IConvert {
     toBinary(character: string): string;
 
+    numberToBinary(number: number): string;
+
     fromBinary(binary: string): string;
 
     /**
@@ -22,6 +24,15 @@ export const convert: IConvert = {
         return convert.zeroPad(character.codePointAt(0).toString(2));
     },
 
+     /**
+     * Converts a given number to a binary string and pads it with 0 (32 bits).
+     * e.g., 1 to '00000000000000000000000001000001'
+     *
+     * @param number
+     */
+    numberToBinary(number) {
+        return convert.zeroPad(number.toString(2));
+    },
 
     /**
      * Converts from binary string to string character.
