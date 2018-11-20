@@ -1,5 +1,6 @@
 import { defaultBaseImage,
          imageWithState,
+         imageWithStateMSB,
          invertedImageWithState,
          domainImageWithState } from './defaultBaseImage';
 import { stateEncode } from './encode';
@@ -138,6 +139,7 @@ const state = {
 }
 
 async function testEncode() {
+    const method = 'MSB';
     // const publicKey = '';
     // const encryptedState = stateShareImage.encrypt(state, publicKey);
     // console.log('encryptedState', encryptedState);
@@ -145,6 +147,7 @@ async function testEncode() {
     // console.log('shareImageEncrypted', shareImageEncrypted);
 
     const shareImage = await stateShareImage.encode(state);
+    // const shareImage = await stateShareImage.encode(state, method);
     // console.log('shareImage', shareImage);
 
     let newImg = new Image();
@@ -157,6 +160,8 @@ testEncode();
 
 
 async function testDecode() {
+    const method = 'MSB';
+
     // const encryptedState = await stateShareImage.decode(<encrypted-image>);
     // console.log('encryptedState', encryptedState);
     // const privateKey = '';
@@ -164,6 +169,7 @@ async function testDecode() {
     // console.log('decryptedState', decryptedState);
 
     let encodedState = await stateShareImage.decode(imageWithState);
+    // let encodedState = await stateShareImage.decode(imageWithStateMSB, method);
     // let encodedState = await stateShareImage.decode(invertedImageWithState);
     console.log('encodedState', encodedState);
 }
