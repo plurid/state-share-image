@@ -1,9 +1,9 @@
 interface IConvert {
-    toBinary(character: string): string;
+    charToBinary(character: string): string;
+    numToBinary(number: number): string;
 
-    numberToBinary(number: number): string;
-
-    fromBinary(binary: string): string;
+    charFromBinary(binary: string): string;
+    numFromBinary(binary: string): number;
 
     /**
      * binary: string gives padStart error from TypeScript
@@ -20,17 +20,17 @@ export const convert: IConvert = {
      *
      * @param character
      */
-    toBinary(character) {
+    charToBinary(character) {
         return convert.zeroPad(character.codePointAt(0).toString(2));
     },
 
      /**
      * Converts a given number to a binary string and pads it with 0 (32 bits).
-     * e.g., 1 to '00000000000000000000000001000001'
+     * e.g., 1 to '00000000000000000000000000000001'
      *
      * @param number
      */
-    numberToBinary(number) {
+    numToBinary(number) {
         return convert.zeroPad(number.toString(2));
     },
 
@@ -40,8 +40,18 @@ export const convert: IConvert = {
      *
      * @param binary
      */
-    fromBinary(binary) {
+    charFromBinary(binary) {
         return String.fromCodePoint(parseInt(binary, 2));
+    },
+
+    /**
+     * Converts from binary string to number.
+     * e.g., '00000000111101000010010000000000' to 16000000
+     *
+     * @param binary
+     */
+    numFromBinary(binary) {
+        return parseInt(binary, 2);
     },
 
 
