@@ -64,7 +64,7 @@ When the new, state-containing image is received by the application, it differen
 
 ## Technology
 
-The stringified `state` object, nude or encrypted, is converted to binary code, 16 bits per character.
+The stringified `state` object, nude or encrypted, is converted to binary code, 32 bits per character.
 
 The `state` object
 
@@ -80,14 +80,14 @@ is read as the 25 characters-long string
 
 and becomes
 
-    0000000001111011 0000000000100010 0000000001100001 0000000001110000 0000000001110000 0000000000100010 0000000000111010 0000000001111011 0000000000100010 0000000001110100 0000000001101000 0000000001100101 0000000001101101 0000000001100101 0000000000100010 0000000000111010 0000000000100010 0000000001101110 0000000001101001 0000000001100111 0000000001101000 0000000001110100 0000000000100010 0000000001111101 0000000001111101
+    00000000000000000000000001111011 00000000000000000000000000100010 00000000000000000000000001100001 00000000000000000000000001110000 00000000000000000000000001110000 00000000000000000000000000100010 00000000000000000000000000111010 00000000000000000000000001111011 00000000000000000000000000100010 00000000000000000000000001110100 00000000000000000000000001101000 00000000000000000000000001100101 00000000000000000000000001101101 00000000000000000000000001100101 00000000000000000000000000100010 00000000000000000000000000111010 00000000000000000000000000100010 00000000000000000000000001101110 00000000000000000000000001101001 00000000000000000000000001100111 00000000000000000000000001101000 00000000000000000000000001110100 00000000000000000000000000100010 00000000000000000000000001111101 00000000000000000000000001111101
 
 (spaces added for viewing purposes)
 
 
 The used image (default or domain-based) is represented as an `Uint8ClampedArray` of the channels of each pixel `[R, G, B, A, R, G, B, A, ...]` (`Red`, `Green`, `Blue`, `Alpha`).
 
-The default base image has 16 million values (2000 pixels × 2000 pixels × 4 channels), allowing for the unoptimized storage of 1 million `LSB`-based `state` string characters, and starts as
+The default base image has 16 million values (2000 pixels × 2000 pixels × 4 channels), allowing for the unoptimized storage of 0.5 million `LSB`-based `state` string characters, and starts as
 
     [88, 27, 56, 255, 88, 27, 56, 255, ... ]
 
@@ -115,6 +115,12 @@ Pass the `state` object to the `stateShareImage.encode()` method and then pass t
 For a secure state encoding and sharing process, the `state` object can be stringified and encrypted before passing it to the `stateShareImage.encode()` method.
 
 To obtain the `state` object from an image which contains one, pass the image data to the `stateShareImage.decode()` method. If the `state` object was encrypted prior to encoding, it must be decrypted after receiving it from the method.
+
+The `encode` and `decode` methods can have a secondary argument, `method: string`, specifiying the type of steganography. Currently supported methods are:
+
+    'LSB' // Least Significant Bit
+    'MSB' // Most Significant Bit
+
 
 The `<state-share-image>` element allows for easy manipulation (copy-pasting) of state images. It displays the image, a single click copies the image to clipboard as `data:image/png;base64`, a right click opens a contextual menu with the option to `Paste State Share Image` if a state share image was previously copied.
 
