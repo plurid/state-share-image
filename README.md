@@ -17,7 +17,7 @@ Encode the `state` of an application into an image in order to be able to share 
 + [Technology](#technology)
 + [Usage](#usage)
     + [Setup](#setup)
-    + [state-share-image HTML Element](#html-state-share-image-element)
+    + [HTML state-share-image Element](#html-state-share-image-element)
 
 
 
