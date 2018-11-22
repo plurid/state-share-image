@@ -37,11 +37,11 @@ state-share-image {
     margin: 0;
     padding: 0;
     width: 210px;
+    cursor: pointer;
 }
 
 .state-share-image-commands ul li {
     padding: 10px;
-    cursor: pointer;
     display: grid;
     align-items: center;
     grid-template-columns: 25px 1fr;
@@ -66,6 +66,11 @@ state-share-image {
     padding: 5px;
 }
 
+
+.state-share-image-commands-input-li {
+    cursor: default;
+}
+
 .state-share-image-commands-input {
     display: grid;
     grid-template-columns: 100px 70px;
@@ -75,17 +80,22 @@ state-share-image {
     border: none;
     background-color: rgba(0,0,0,0.25);
     color: white;
-    cursor: default;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .state-share-image-commands-input button {
-    margin-left: 10px;
-    background: rgba(49,47,134,1);
-    padding: 5px;
+    background: rgba(49, 47, 134, 1);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    cursor: pointer;
+    border: none;
     border-radius: $border-radius;
     color: white;
-    border: none;
-    border-radius: none;
+    padding: 5px;
+    margin-left: 10px;
     width: 100%;
-    cursor: pointer;
+}
+
+.state-share-image-commands-input button:hover {
+    background: rgb(34, 33, 97);
 }
