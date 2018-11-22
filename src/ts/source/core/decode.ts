@@ -24,7 +24,7 @@ export function stateDecode(stateImage: HTMLImageElement,
     ctxStateImage.drawImage(stateImage, 0, 0);
     let imgDataStateImage = ctxStateImage.getImageData(0, 0, stateImage.width, stateImage.height);
     let pixelColorsStateImage = imgDataStateImage.data;
-    console.log('pixelColorsStateImage', pixelColorsStateImage);
+    // console.log('pixelColorsStateImage', pixelColorsStateImage);
 
 
     // Base Image
@@ -35,7 +35,7 @@ export function stateDecode(stateImage: HTMLImageElement,
     ctxBaseImage.drawImage(baseImage, 0, 0);
     let imgDataBaseImage = ctxBaseImage.getImageData(0, 0, baseImage.width, baseImage.height);
     let pixelColorsBaseImage = imgDataBaseImage.data;
-    console.log('pixelColorsBaseImage', pixelColorsBaseImage);
+    // console.log('pixelColorsBaseImage', pixelColorsBaseImage);
 
 
     // Compute
@@ -43,9 +43,9 @@ export function stateDecode(stateImage: HTMLImageElement,
                                         pixelColorsStateImage,
                                         pixelColorsBaseImage,
                                         method);
-    console.log('stateStringLengthBinary', stateStringLengthBinary);
+    // console.log('stateStringLengthBinary', stateStringLengthBinary);
     const stateStringLength = convert.numFromBinary(stateStringLengthBinary);
-    console.log('stateStringLength', stateStringLength);
+    // console.log('stateStringLength', stateStringLength);
     const stateStringBinary = computeStateStringBinary(
                                         pixelColorsStateImage,
                                         pixelColorsBaseImage,
@@ -69,15 +69,15 @@ function computeStateStringLengthBinary(
         let char;
 
         switch(method) {
-            case 'LSB':
-                char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
-                break;
             case 'MSB':
                 // ???
                 // console.log(pixelColorsStateImage[i]);
                 // console.log(pixelColorsBaseImage[i]);
                 char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
                 break;
+            default:
+                // LSB
+                char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
         }
 
         stateStringLengthBinary += char;

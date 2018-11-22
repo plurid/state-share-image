@@ -29,28 +29,26 @@ export function stateEncode(image: HTMLImageElement,
         const binaryChar = convert.charToBinary(stateString[i]);
         stateBits += binaryChar;
     }
-    // console.log('stateBits', [stateBits]);
     const stateBitsLength = convert.numToBinary(stateBits.length);
-    // console.log('stateBitsLength', stateBitsLength);
-    // console.log('stateBits Length Before', stateBits.length);
     stateBits = stateBitsLength + stateBits;
-    // console.log('stateBits with Length', [stateBits]);
-    // console.log('stateBits Length After', stateBits.length);
+    console.log('stateBits', stateBits);
 
     for (let i = 0; i < stateBits.length; i++) {
         switch(method) {
-            case 'LSB':
-                pixelColors[i] = pixelColors[i] ^ parseInt(stateBits[i]);
-                break;
             case 'MSB':
                 // ???
-                // if ( i < 32) {
-                //     console.log(pixelColors[i]);
-                //     console.log(parseInt(stateBits[i]));
-                //     console.log(parseInt(stateBits[i]) + 7);
-                // }
-                pixelColors[i] = pixelColors[i] ^ (parseInt(stateBits[i]) + 7);
+                if ( i < 32) {
+                    console.log('MSB');
+                    // console.log(pixelColors[i]);
+                    // console.log(parseInt(stateBits[i]));
+                    // console.log(parseInt(stateBits[i]) + 7);
+                }
+                pixelColors[i] = pixelColors[i] >> parseInt(stateBits[i]);
+                // pixelColors[i] = 255 - pixelColors[i] >> (parseInt(stateBits[i])+7);
                 break;
+            default:
+                // LSB
+                pixelColors[i] = pixelColors[i] ^ parseInt(stateBits[i]);
         }
     }
     console.log('encoded state pixelColors', pixelColors);
