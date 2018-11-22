@@ -132,6 +132,12 @@ The `encode` and `decode` methods can have a secondary, optional argument, `meth
 
 The `<state-share-image>` HTML element allows for easy manipulation (copy-pasting) of state images.
 
-The element displays the current `state` image, `ctrl/cmd` + `click` copies the image to clipboard as `data:image/png;base64`. A single click opens a contextual menu with the options to `Copy State Share Image` and `Paste State Share Image` if a state share image was previously copied.
+The element displays the current `state` image.
+
+`ctrl/cmd` + `click` copies the state-share image to clipboard as `data:image/png;base64`.
+
+`alt/opt` + `click` pastes from clipboard a state-share image, if previously copied.
+
+A single click opens a contextual menu with the options to `Copy State Share Image` and `Paste State Share Image` if a state-share image was previously copied.
 
 When a new state is pasted in the `<state-share-image>` element a `stateshareimage` Event is emitted.
