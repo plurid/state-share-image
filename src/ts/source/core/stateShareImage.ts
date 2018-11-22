@@ -151,10 +151,10 @@ async function testEncode() {
     console.log('encodedState', encodedState);
 
 
-    const newImg = new Image();
-    newImg.src = shareImage;
-    newImg.height = 100;
-    body.appendChild(newImg);
+    // const newImg = new Image();
+    // newImg.src = shareImage;
+    // newImg.height = 100;
+    // body.appendChild(newImg);
 }
 testEncode();
 
