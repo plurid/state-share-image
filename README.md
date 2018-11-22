@@ -16,7 +16,8 @@ Encode the `state` of an application into an image in order to be able to share 
     + [Proposal](#proposal)
 + [Technology](#technology)
 + [Usage](#usage)
-    + [state-share-image HTML Element](#state-share-image-html-element)
+    + [Setup](#setup)
+    + [state-share-image HTML Element](#html-state-share-image-element)
 
 
 
@@ -101,6 +102,8 @@ To decode the `state` object from the obtained `state-share image` the reverse o
 
 ## Usage
 
+### Setup
+
 Add the `state-share-image` script to the application (or install with `npm`).
 
 Define the `state` object for the application.
@@ -124,7 +127,7 @@ The `encode` and `decode` methods can have a secondary, optional argument, `meth
 
 
 
-### state-share-image HTML Element
+### HTML `state-share-image` Element
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/state-share-image-element.png" height="100px">
