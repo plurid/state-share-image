@@ -75,10 +75,7 @@ export const stateShareImage: IStateShareImage = {
 
         const domainImageMetaTag = document.querySelector('meta[property="state-share-image"]');
         const domainImageSrc = domainImageMetaTag ? domainImageMetaTag.getAttribute('content') : '';
-        // console.log(domainImageSrc);
-
         const baseImageSrc = domainImageSrc ? domainImageSrc : defaultBaseImage
-        // console.log('baseImage', baseImageSrc);
 
         return new Promise((resolve, reject) => {
             let image = new Image();
@@ -137,7 +134,7 @@ const state = {
 }
 
 async function testEncode() {
-    // const method = 'MSB';
+    const method = 'MSB';
 
     // const publicKey = 'test';
     // const encryptedState = stateShareImage.encrypt(state, publicKey);
@@ -149,7 +146,11 @@ async function testEncode() {
     // const shareImage = await stateShareImage.encode(state, method);
     // console.log('shareImage', shareImage);
 
-    let newImg = new Image();
+    const encodedState = await stateShareImage.decode(shareImage);
+    console.log('encodedState', encodedState);
+
+
+    const newImg = new Image();
     newImg.src = shareImage;
     newImg.height = 100;
     body.appendChild(newImg);
@@ -168,9 +169,9 @@ async function testDecode() {
     // const decryptedState = stateShareImage.decrypt(encryptedState, privateKey);
     // console.log('decryptedState', decryptedState);
 
-    let encodedState = await stateShareImage.decode(imageWithState);
-    // let encodedState = await stateShareImage.decode(imageWithStateMSB, method);
-    // let encodedState = await stateShareImage.decode(invertedImageWithState);
-    console.log('encodedState', encodedState);
+    // const encodedState = await stateShareImage.decode(imageWithState);
+    // const encodedState = await stateShareImage.decode(imageWithStateMSB, method);
+    // const encodedState = await stateShareImage.decode(invertedImageWithState);
+    // console.log('encodedState', encodedState);
 }
 testDecode();
