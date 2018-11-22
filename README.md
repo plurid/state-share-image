@@ -127,7 +127,7 @@ The `encode` and `decode` methods can have a secondary, optional argument, `meth
 ### state-share-image HTML Element
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/state-share-image-element.png">
+    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/state-share-image-element.png" height="100px">
 </p>
 
 The `<state-share-image>` HTML element allows for easy manipulation (copy-pasting) of state images.
