@@ -23,7 +23,7 @@ export function stateEncode(image: HTMLImageElement,
 
     let imgData = ctx.getImageData(0, 0, image.width, image.height);
     let pixelColors = imgData.data;
-    console.log('default image pixelColors', pixelColors);
+    // console.log('default image pixelColors', pixelColors);
 
     for (let i = 0; i < stateString.length; i++) {
         const binaryChar = convert.charToBinary(stateString[i]);
@@ -31,27 +31,23 @@ export function stateEncode(image: HTMLImageElement,
     }
     const stateBitsLength = convert.numToBinary(stateBits.length);
     stateBits = stateBitsLength + stateBits;
-    console.log('stateBits', stateBits);
+    // console.log('stateBits', stateBits);
 
     for (let i = 0; i < stateBits.length; i++) {
         switch(method) {
             case 'MSB':
-                // ???
-                if ( i < 32) {
-                    console.log('MSB');
-                    // console.log(pixelColors[i]);
-                    // console.log(parseInt(stateBits[i]));
-                    // console.log(parseInt(stateBits[i]) + 7);
+                if (parseInt(stateBits[i])) {
+                    pixelColors[i] = pixelColors[i] ^ 7;
                 }
-                pixelColors[i] = pixelColors[i] >> parseInt(stateBits[i]);
-                // pixelColors[i] = 255 - pixelColors[i] >> (parseInt(stateBits[i])+7);
                 break;
             default:
                 // LSB
-                pixelColors[i] = pixelColors[i] ^ parseInt(stateBits[i]);
+                if (parseInt(stateBits[i])) {
+                    pixelColors[i] = pixelColors[i] ^ 1;
+                }
         }
     }
-    console.log('encoded state pixelColors', pixelColors);
+    // console.log('encoded state pixelColors', pixelColors);
 
     ctx.putImageData(imgData, 0, 0);
 

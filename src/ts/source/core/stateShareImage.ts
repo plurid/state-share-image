@@ -147,6 +147,7 @@ async function testEncode() {
     // console.log('shareImage', shareImage);
 
     const encodedState = await stateShareImage.decode(shareImage);
+    // const encodedState = await stateShareImage.decode(shareImage, method);
     console.log('encodedState', encodedState);
 
 

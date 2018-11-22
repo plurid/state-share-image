@@ -66,20 +66,7 @@ function computeStateStringLengthBinary(
                 method: string): string {
     let stateStringLengthBinary = '';
     for (let i = 0; i < WORDSIZE; i++) {
-        let char;
-
-        switch(method) {
-            case 'MSB':
-                // ???
-                // console.log(pixelColorsStateImage[i]);
-                // console.log(pixelColorsBaseImage[i]);
-                char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
-                break;
-            default:
-                // LSB
-                char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
-        }
-
+        const char = computeChar(pixelColorsStateImage[i], pixelColorsBaseImage[i], method);
         stateStringLengthBinary += char;
     }
     return stateStringLengthBinary;
@@ -93,18 +80,7 @@ function computeStateStringBinary(
                 method: string): string {
     let stateStringBinary = '';
     for (let i = WORDSIZE; i < stateStringLength + WORDSIZE; i++) {
-        let char;
-
-        switch(method) {
-            case 'LSB':
-                char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
-                break;
-            case 'MSB':
-                // ???
-                char = pixelColorsStateImage[i] ^ pixelColorsBaseImage[i];
-                break;
-        }
-
+        const char = computeChar(pixelColorsStateImage[i], pixelColorsBaseImage[i], method);
         stateStringBinary += char;
     }
     return stateStringBinary;
@@ -127,4 +103,30 @@ function computeStateString(stateArrayBinary: Array<string>): string {
         stateString += convert.charFromBinary(stateArrayBinary[i]);
     }
     return stateString;
+}
+
+
+function computeChar(pixelColorsStateImage: number, pixelColorsBaseImage: number, method: string): string {
+    let char, compute;
+
+    switch(method) {
+        case 'MSB':
+            compute = pixelColorsStateImage ^ pixelColorsBaseImage;
+            if (compute === 7) {
+                char = '1';
+            } else {
+                char = '0';
+            }
+            break;
+        default:
+            // LSB
+            compute = pixelColorsStateImage ^ pixelColorsBaseImage;
+            if (compute === 1) {
+                char = '1';
+            } else {
+                char = '0';
+            }
+    }
+
+    return char;
 }
