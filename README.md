@@ -116,9 +116,9 @@ For a secure state encoding and sharing process, the `state` object can be strin
 
 To obtain the `state` object from an image which contains one, pass the image data to the `stateShareImage.decode()` method. If the `state` object was encrypted prior to encoding, it must be decrypted after receiving it from the method.
 
-The `encode` and `decode` methods can have a secondary argument, `method: string`, specifiying the type of steganography. Currently supported methods are:
+The `encode` and `decode` methods can have a secondary, optional argument, `method: string`, specifiying the type of steganography. Currently supported methods are:
 
-    'LSB' // Least Significant Bit
+    'LSB' // Least Significant Bit - default
     'MSB' // Most Significant Bit
 
 
