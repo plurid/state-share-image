@@ -55,3 +55,24 @@ state-share-image {
   height: 15px;
   padding: 5px; }
 
+.state-share-image-commands-input {
+  display: grid;
+  grid-template-columns: 100px 70px; }
+
+.state-share-image-commands-input input {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.25);
+  color: white;
+  cursor: default; }
+
+.state-share-image-commands-input button {
+  margin-left: 10px;
+  background: #312f86;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  border-radius: none;
+  width: 100%;
+  cursor: pointer; }
+
