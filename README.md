@@ -16,6 +16,7 @@ Encode the `state` of an application into an image in order to be able to share 
     + [Proposal](#proposal)
 + [Technology](#technology)
 + [Usage](#usage)
+    + [state-share-image HTML Element](#state-share-image-html-element)
 
 
 
@@ -122,6 +123,15 @@ The `encode` and `decode` methods can have a secondary, optional argument, `meth
     'MSB' // Most Significant Bit
 
 
-The `<state-share-image>` element allows for easy manipulation (copy-pasting) of state images. It displays the image, a single click copies the image to clipboard as `data:image/png;base64`, a right click opens a contextual menu with the option to `Paste State Share Image` if a state share image was previously copied.
+
+### state-share-image HTML Element
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/state-share-image-element.png">
+</p>
+
+The `<state-share-image>` HTML element allows for easy manipulation (copy-pasting) of state images.
+
+The element displays the current `state` image, `ctrl/cmd` + `click` copies the image to clipboard as `data:image/png;base64`. A single click opens a contextual menu with the options to `Copy State Share Image` and `Paste State Share Image` if a state share image was previously copied.
 
 When a new state is pasted in the `<state-share-image>` element a `stateshareimage` Event is emitted.
