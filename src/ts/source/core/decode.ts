@@ -19,19 +19,25 @@ export function stateDecode(stateImage: HTMLImageElement,
     const pixelColorsStateImage = getPixelColors(stateImage);
     const pixelColorsBaseImage = getPixelColors(baseImage);
 
-    const stateStringLength = computeStateStringLength(pixelColorsStateImage,
-                                                       pixelColorsBaseImage,
+    const stateStringLength = computeStateStringLength(pixelColorsStateImage.slice(0, WORDSIZE),
+                                                       pixelColorsBaseImage.slice(0, WORDSIZE),
                                                        method);
     const stateStringBinary = computeStateStringBinary(pixelColorsStateImage,
                                                        pixelColorsBaseImage,
                                                        stateStringLength,
                                                        method);
-    const stateString = computeStateString(stateStringBinary);
-    return stateString;
+
+    return computeStateString(stateStringBinary);
 }
 
 
 
+/**
+ * Extract the pixel values from the image.
+ *
+ * @param image
+ * @returns {Uint8ClampedArray}
+ */
 function getPixelColors(image: HTMLImageElement): Uint8ClampedArray {
     const canvas = document.createElement('canvas');
     canvas.width = image.width;
@@ -44,6 +50,15 @@ function getPixelColors(image: HTMLImageElement): Uint8ClampedArray {
 }
 
 
+/**
+ * Compute the length of the encoded state string
+ * from the first WORDSIZE (32) pixels in the pixels image data.
+ *
+ * @param pixelColorsStateImage
+ * @param pixelColorsBaseImage
+ * @param method
+ * @returns {number}
+ */
 function computeStateStringLength(pixelColorsStateImage: Uint8ClampedArray,
                                   pixelColorsBaseImage: Uint8ClampedArray,
                                   method: string): number {
@@ -55,6 +70,14 @@ function computeStateStringLength(pixelColorsStateImage: Uint8ClampedArray,
 }
 
 
+/**
+ * Compute the binary value of the encoded state string length.
+ *
+ * @param pixelColorsStateImage
+ * @param pixelColorsBaseImage
+ * @param method
+ * @returns {string}
+ */
 function computeStateStringLengthBinary(pixelColorsStateImage: Uint8ClampedArray,
                                         pixelColorsBaseImage: Uint8ClampedArray,
                                         method: string): string {
@@ -67,6 +90,16 @@ function computeStateStringLengthBinary(pixelColorsStateImage: Uint8ClampedArray
 }
 
 
+/**
+ * Compute the binary of the encoded state string and
+ * returns an array with each character of WORDSIZE (32) bits.
+ *
+ * @param pixelColorsStateImage
+ * @param pixelColorsBaseImage
+ * @param stateStringLength
+ * @param method
+ * @returns {string[]}
+ */
 function computeStateStringBinary(pixelColorsStateImage: Uint8ClampedArray,
                                   pixelColorsBaseImage: Uint8ClampedArray,
                                   stateStringLength: number,
@@ -81,6 +114,14 @@ function computeStateStringBinary(pixelColorsStateImage: Uint8ClampedArray,
 }
 
 
+/**
+ * Compute characters based on the pixel values and the encoded method.
+ *
+ * @param pixelColorsStateImage
+ * @param pixelColorsBaseImage
+ * @param method
+ * @returns {string}
+ */
 function computeChar(pixelColorsStateImage: number,
                      pixelColorsBaseImage: number,
                      method: string): string {
@@ -101,7 +142,13 @@ function computeChar(pixelColorsStateImage: number,
 }
 
 
-function computeStateArrayBinary(stateStringBinary: string): Array<string> {
+/**
+ * Split the stateStringBinary into characters of WORDSIZE (32) bits length.
+ *
+ * @param stateStringBinary
+ * @returns {string[]}
+ */
+function computeStateArrayBinary(stateStringBinary: string): string[] {
     let stateArrayBinary = [];
     for (let i = 0; i < stateStringBinary.length / WORDSIZE; i++ ) {
         const val = stateStringBinary.substring(WORDSIZE * i, WORDSIZE * (i+1));
@@ -111,7 +158,13 @@ function computeStateArrayBinary(stateStringBinary: string): Array<string> {
 }
 
 
-function computeStateString(stateArrayBinary: Array<string>): string {
+/**
+ * Converts the state string from binary to UTF-32.
+ *
+ * @param stateArrayBinary
+ * @returns {string}
+ */
+function computeStateString(stateArrayBinary: string[]): string {
     let stateString = '';
     for (let i = 0; i < stateArrayBinary.length; i++) {
         stateString += convert.charFromBinary(stateArrayBinary[i]);
