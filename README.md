@@ -53,7 +53,7 @@ The `State-Share Image` concept proposes to encode the state of the application,
 
 An application could use the default base image, or it's own logo/favicon. The application will pass the nude or encrypted `state` object to the `stateShareImage.encode()` method, and retrieve the new, slightly modified image.
 
-The image could be displayed on the URL bar (if `state-share image` is implemented at the browser level), or somewhere in the application.
+The image could be displayed on the URL bar (if `state-share image` is implemented at the browser level, extending or replacing the use of a favicon), or somewhere in the application.
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/fav-url-state-img.png" width="60%">
@@ -133,7 +133,7 @@ Encode the `state` object using `stateShareImage.encode(stateObject)`, get `imag
 
 For a secure state encoding and sharing process, the `state` object can be stringified and encrypted before passing it to the `stateShareImage.encode()` method.
 
-If the state-share-image element has no `src` it uses a default one.
+If the state-share-image element has no `src` it uses a default one for viewing purposes.
 
 To obtain the `state` object from an image which contains one, pass the image data to the `stateShareImage.decode()` method. If the `state` object was encrypted prior to encoding, it must be decrypted after receiving it from the method.
 
@@ -143,7 +143,7 @@ Listen on the window for the `stateshareimage` event and initialize the state of
         appState = await stateShareImage.decode(event.detail);
     });
 
-Setup a state action to update the state-share-image `src` attribute after each state change.
+Setup a state action to update the `<state-share-image>` `src` attribute after each state change.
 
 The `encode` and `decode` methods can have a secondary, optional argument, `method: string`, specifiying the type of steganography. Currently supported methods are:
 
