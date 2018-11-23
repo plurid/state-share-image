@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/identity/state-share-image-logo.png" height="200px">
+    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/identity/state-share-image-logo-rounded.png" height="200px">
 </p>
 
 
