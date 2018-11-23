@@ -1,6 +1,7 @@
 # top-most EditorConfig file
 root = true
 
+
 # Settings
 [*]
 charset = utf-8
