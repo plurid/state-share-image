@@ -28,7 +28,6 @@ if no image is set, than the default one is used
      200 pixels ×  200 pixels × 4 color channels =    160.000 bits =   5.000 state string characters ≈  24.21 kB
      400 pixels ×  400 pixels × 4 color channels =    640.000 bits =  20.000 state string characters ≈  44.34 kB
      800 pixels ×  800 pixels × 4 color channels =  2.560.000 bits =  80.000 state string characters ≈  85.35 kB
-    1600 pixels × 1600 pixels × 4 color channels = 10.240.000 bits = 320.000 state string characters ≈ 170.46 kB
 
 
 The user encodes the stateObject using stateShareImage.encode(stateObject)
