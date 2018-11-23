@@ -32,6 +32,7 @@ export function stateEncode(image: HTMLImageElement,
     const stateBitsLength = convert.numToBinary(stateBits.length);
     stateBits = stateBitsLength + stateBits;
     // console.log('stateBits', stateBits);
+    // console.log('stateBits', stateBits.length);
 
     for (let i = 0; i < stateBits.length; i++) {
         switch(method) {

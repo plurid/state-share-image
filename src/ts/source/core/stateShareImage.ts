@@ -1,8 +1,7 @@
-import { defaultBaseImage,
-         imageWithState,
-         imageWithStateMSB,
-         invertedImageWithState,
-         domainImageWithState } from './defaultBaseImage';
+import { defaultBaseImage100,
+         defaultBaseImage200,
+         defaultBaseImage400,
+         defaultBaseImage800 } from './defaultBaseImage';
 import { stateEncode } from './encode';
 import { stateDecode } from './decode';
 import { stateEncrypt } from './encrypt';
@@ -10,6 +9,31 @@ import { stateDecrypt } from './decrypt';
 
 
 const defaultStegMethod = 'LSB';
+
+const stateStringAllowableLengths = [1249, 4999, 19999, 79999];
+const stateImagePossibleWidths = [100, 200, 400, 800];
+
+
+interface IDefaultBaseImage {
+    name: string,
+    src: string,
+    sizeLimit: number,
+    charsLimit: number
+}
+type TDefaultBaseImages = Array<IDefaultBaseImage>;
+
+
+interface IDefaultBaseImages {
+    [key: string]: string;
+}
+const defBaseImages: IDefaultBaseImages = {
+    defaultBaseImage100,
+    defaultBaseImage200,
+    defaultBaseImage400,
+    defaultBaseImage800
+}
+
+const defaultBaseImages = makeDefaultBaseImages(stateStringAllowableLengths, stateImagePossibleWidths, defBaseImages);
 
 
 
@@ -19,8 +43,8 @@ const defaultStegMethod = 'LSB';
  *      decode  :: from image gets the state object.
  *
  * Steganography methods:
- *      LSB     :: Least Significant Bit;
- *      MSB     :: Most Significant Bit;
+ *      LSB     :: Least Significant Bit - default (supported);
+ *      MSB     :: Most Significant Bit (supported);
  *      DFT     :: Discrete Fourier Transform;
  *      DCT     :: Discrete Cosine Transform;
  *      DWT     :: Discrete Wavelet Transform;
@@ -73,9 +97,11 @@ export const stateShareImage: IStateShareImage = {
                                 : stateObject;
         console.log('stateString:', stateString);
 
+        const defaultBaseImage = defBaseImages[getDefaultBaseImage('length', stateString.length, defaultBaseImages)];
+
         const domainImageMetaTag = document.querySelector('meta[property="state-share-image"]');
         const domainImageSrc = domainImageMetaTag ? domainImageMetaTag.getAttribute('content') : '';
-        const baseImageSrc = domainImageSrc ? domainImageSrc : defaultBaseImage
+        const baseImageSrc = domainImageSrc ? domainImageSrc : defaultBaseImage;
 
         return new Promise((resolve, reject) => {
             let image = new Image();
@@ -90,12 +116,15 @@ export const stateShareImage: IStateShareImage = {
     decode(imageData, method = defaultStegMethod) {
         const domainImageMetaTag = document.querySelector('meta[property="state-share-image"]');
         const domainImageSrc = domainImageMetaTag ? domainImageMetaTag.getAttribute('content') : '';
-        const baseImageSrc = domainImageSrc ? domainImageSrc : defaultBaseImage;
 
         return new Promise((resolve, reject) => {
             let stateImage = new Image();
             stateImage.onload = () => {
                 return resolve(new Promise((resolve, reject) => {
+                        console.log(stateImage.width);
+                        const defaultBaseImage = defBaseImages[getDefaultBaseImage('width', stateImage.width, defaultBaseImages)];
+                        const baseImageSrc = domainImageSrc ? domainImageSrc : defaultBaseImage;
+
                         let baseImage = new Image();
                         baseImage.onload = () => {
                             return resolve(stateDecode(stateImage, baseImage, method));
@@ -121,6 +150,47 @@ export const stateShareImage: IStateShareImage = {
         return stateDecrypt(encryptedString, privateKey);
     }
 }
+
+
+function getDefaultBaseImage(type: string, value: number, defaultBaseImages: TDefaultBaseImages) {
+    for (let i = 0; i < defaultBaseImages.length; i++) {
+        const defImage = defaultBaseImages[i];
+
+        switch(type) {
+            case 'length':
+                if (value < defImage.charsLimit) {
+                    return defImage.name;
+                }
+            case 'width':
+                if (value === defImage.sizeLimit) {
+                    return defImage.name;
+                }
+        }
+    }
+}
+
+
+
+function makeDefaultBaseImages(lengths: number[],
+                               widths: number[],
+                               defBaseImage: IDefaultBaseImages): TDefaultBaseImages {
+    const defaultBaseImages: TDefaultBaseImages = [];
+    const imageBaseName = 'defaultBaseImage';
+
+    for (let i = 0; i < lengths.length; i++) {
+        const imageName = imageBaseName + widths[i];
+        const defaultBaseImage: IDefaultBaseImage = {
+            name: imageName,
+            src: defBaseImage[imageName],
+            sizeLimit: widths[i],
+            charsLimit: lengths[i]
+        };
+        defaultBaseImages.push(defaultBaseImage);
+    }
+
+    return defaultBaseImages;
+}
+
 
 
 
@@ -160,19 +230,19 @@ testEncode();
 
 
 
-async function testDecode() {
-    // const method = 'MSB';
+// async function testDecode() {
+//     // const method = 'MSB';
 
-    // const encryptedState = 'testing';
-    // const encryptedState = await stateShareImage.decode(<encrypted-image>);
-    // console.log('encryptedState', encryptedState);
-    // const privateKey = 'test';
-    // const decryptedState = stateShareImage.decrypt(encryptedState, privateKey);
-    // console.log('decryptedState', decryptedState);
+//     // const encryptedState = 'testing';
+//     // const encryptedState = await stateShareImage.decode(<encrypted-image>);
+//     // console.log('encryptedState', encryptedState);
+//     // const privateKey = 'test';
+//     // const decryptedState = stateShareImage.decrypt(encryptedState, privateKey);
+//     // console.log('decryptedState', decryptedState);
 
-    // const encodedState = await stateShareImage.decode(imageWithState);
-    // const encodedState = await stateShareImage.decode(imageWithStateMSB, method);
-    // const encodedState = await stateShareImage.decode(invertedImageWithState);
-    // console.log('encodedState', encodedState);
-}
-testDecode();
+//     // const encodedState = await stateShareImage.decode(imageWithState);
+//     // const encodedState = await stateShareImage.decode(imageWithStateMSB, method);
+//     // const encodedState = await stateShareImage.decode(invertedImageWithState);
+//     // console.log('encodedState', encodedState);
+// }
+// testDecode();
