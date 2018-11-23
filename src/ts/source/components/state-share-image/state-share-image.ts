@@ -4,7 +4,7 @@ import { LitElement, html } from '@polymer/lit-element';
 
 class StateShareImage extends LitElement {
     private fallbackPasteInputLi = html``;
-    private src = '';
+    private src: string | null = '';
 
     static get properties() {
         return {
@@ -34,7 +34,7 @@ class StateShareImage extends LitElement {
             }
         }
 
-        const commands: HTMLElement = this.querySelector('.state-share-image-commands');
+        const commands: HTMLElement | null = this.querySelector('.state-share-image-commands');
         if (close) {
             commands.style.display = 'none';
         } else if (commands.style.display === 'block') {
@@ -45,7 +45,7 @@ class StateShareImage extends LitElement {
     }
 
     copyStateImage() {
-        const stateShareImage: HTMLImageElement = this.querySelector('.state-share-image');
+        const stateShareImage: HTMLImageElement | null = this.querySelector('.state-share-image');
         const imageSource = stateShareImage.src;
 
         if ((<any>navigator).clipboard) {
@@ -95,7 +95,7 @@ class StateShareImage extends LitElement {
 
     // Fallback Paste State-Share image for Firefox/Safari
     togglePasteInput() {
-        const inputLi: HTMLDivElement = this.querySelector('.state-share-image-commands-input-li');
+        const inputLi: HTMLDivElement | null = this.querySelector('.state-share-image-commands-input-li');
 
         if (inputLi) {
             if (inputLi.style.display === 'block' || inputLi.style.display === '') {
@@ -123,7 +123,7 @@ class StateShareImage extends LitElement {
 
     pasteStateImageInput() {
         // Set image to input value.
-        const inputPaste: HTMLInputElement = this.querySelector('.state-share-image-commands-input-paste');
+        const inputPaste: HTMLInputElement | null = this.querySelector('.state-share-image-commands-input-paste');
         this.dispatchStateShareImageEvent(inputPaste.value);
 
         // Hide Commands.
