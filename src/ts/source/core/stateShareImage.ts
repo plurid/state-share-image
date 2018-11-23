@@ -121,7 +121,6 @@ export const stateShareImage: IStateShareImage = {
             let stateImage = new Image();
             stateImage.onload = () => {
                 return resolve(new Promise((resolve, reject) => {
-                        console.log(stateImage.width);
                         const defaultBaseImage = defBaseImages[getDefaultBaseImage('width', stateImage.width, defaultBaseImages)];
                         const baseImageSrc = domainImageSrc ? domainImageSrc : defaultBaseImage;
 
