@@ -1,10 +1,10 @@
 import { LitElement, html } from '@polymer/lit-element';
-import { defaultBaseImage } from '../../core/defaultBaseImage';
 
 
 
 class StateShareImage extends LitElement {
-    fallbackPasteInputLi = html``;
+    private fallbackPasteInputLi = html``;
+    private src = '';
 
     static get properties() {
         return {
@@ -13,6 +13,7 @@ class StateShareImage extends LitElement {
 
     constructor() {
         super();
+        this.src = this.getAttribute('src');
     }
 
     createRenderRoot() {
@@ -87,8 +88,8 @@ class StateShareImage extends LitElement {
     }
 
     updateStateShareImage(imageData: string) {
-        const stateShareImage: HTMLImageElement = this.querySelector('.state-share-image');
-        stateShareImage.src = imageData;
+        this.src = imageData;
+        this.requestUpdate();
     }
 
 
@@ -138,7 +139,7 @@ class StateShareImage extends LitElement {
         return html`
             <img
                 class="state-share-image"
-                src="${defaultBaseImage}"
+                src="${this.src}"
                 @click=${ (e: MouseEvent) => this.toggleCommands(false, e) }
             >
 
