@@ -108,17 +108,37 @@ Add the `state-share-image` script to the application (or install with `npm`).
 
 Define the `state` object for the application.
 
-Define the base image within a `meta` tag
+Define the base domain image within a `meta` tag
 
     <meta property="state-share-image" content="/path/to/image.png">
 
-If no image is defined, then the default one will be used.
+If no image is defined, then the default one is used, based on the state string length
 
-Pass the `state` object to the `stateShareImage.encode()` method and then pass the returned image to the supplied `<state-share-image>` element or to another HTML element defined within the application.
+    100 pixels × 100 pixels × 4 color channels =  40.000 bits =  1.250 state string characters ≈ 10.36 kB
+    200 pixels × 200 pixels × 4 color channels = 160.000 bits =  5.000 state string characters ≈ 18.16 kB
+    400 pixels × 400 pixels × 4 color channels = 640.000 bits = 20.000 state string characters ≈ 33.25 kB
+
+If the state string length is greater than the default images, a bigger one is created:
+
+     800 pixels ×  800 pixels × 4 color channels =  2.560.000 bits =    80.000 state string characters ≈  64.01 kB
+    1600 pixels × 1600 pixels × 4 color channels = 10.240.000 bits =   320.000 state string characters ≈ 127.85 kB
+    3200 pixels × 3200 pixels × 4 color channels = 40.960.000 bits = 1.280.000 state string characters ≈ 357.08 kB
+
+Encode the `state` object using `stateShareImage.encode(stateObject)`, get imageData and passes it as `src` attribute to the `state-share-image` element.
 
 For a secure state encoding and sharing process, the `state` object can be stringified and encrypted before passing it to the `stateShareImage.encode()` method.
 
+If the state-share-image element has no `src` it uses a default one.
+
 To obtain the `state` object from an image which contains one, pass the image data to the `stateShareImage.decode()` method. If the `state` object was encrypted prior to encoding, it must be decrypted after receiving it from the method.
+
+Listen on the window for the `stateshareimage` event and initialize the state of the application with the state obtained from decoding (and decrypting) the `event.detail` image data.
+
+    window.addEventListener('stateshareimage', async (event) => {
+        appState = await stateShareImage.decode(event.detail);
+    });
+
+Setup a state action to update the state-share-image `src` attribute after each state change.
 
 The `encode` and `decode` methods can have a secondary, optional argument, `method: string`, specifiying the type of steganography. Currently supported methods are:
 
@@ -130,7 +150,7 @@ The `encode` and `decode` methods can have a secondary, optional argument, `meth
 ### HTML `state-share-image` Element
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/state-share-image-element.png" height="100px">
+    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/docs/images/state-share-image-element.png" height="120px">
 </p>
 
 The `<state-share-image>` HTML element allows for easy manipulation (copy-pasting) of state images.
