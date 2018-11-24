@@ -191,13 +191,13 @@ function copyToClipboard(text: string) {
 
 
 
-// Test event;
-window.addEventListener('stateshareimage', (event) => {
-    console.log(event);
-    // console.log(event.detail);
+// // Test event;
+// window.addEventListener('stateshareimage', (event) => {
+//     console.log(event);
+//     // console.log(event.detail);
 
-    // get imageData from event.detail
-    // get stateString from stateShareImage.decode(imageData);
-    // decrypt stateString - optional
-    // initialize the application with the state object
-});
+//     // get imageData from event.detail
+//     // get stateString from stateShareImage.decode(imageData);
+//     // decrypt stateString - optional
+//     // initialize the application with the state object
+// });
