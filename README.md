@@ -126,6 +126,8 @@ If the state string length is greater than the default images, a bigger one is c
     1600 pixels × 1600 pixels × 4 color channels = 10.240.000 bits =   320.000 state string characters ≈ 127.85 kB
     3200 pixels × 3200 pixels × 4 color channels = 40.960.000 bits = 1.280.000 state string characters ≈ 357.08 kB
 
+or larger, if needed.
+
 Encode the `state` object using `stateShareImage.encode(stateObject)`, get `imageData` and pass it as `src` attribute to the `state-share-image` element.
 
     imageData = await stateShareImage.encode(stateObject);
