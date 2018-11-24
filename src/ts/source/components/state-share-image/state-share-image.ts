@@ -1,4 +1,5 @@
 import { LitElement, html } from '@polymer/lit-element';
+import { defaultBaseImage100 } from '../../core/defaultBaseImage';
 
 
 
@@ -13,7 +14,7 @@ class StateShareImage extends LitElement {
 
     constructor() {
         super();
-        this.src = this.getAttribute('src');
+        this.src = this.getAttribute('src') || defaultBaseImage100;
     }
 
     createRenderRoot() {
