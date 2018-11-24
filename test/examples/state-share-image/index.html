@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Demo | State-Share Image</title>
+
+        <meta name="description" content="HTTP(S) Application State-Sharing Using Domain-Based Steganographical-Encoded Image">
+
+        <meta name="robots" content="index, follow">
+
+        <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+
+        <meta name="theme-color" content="#22252A">
+
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://plurid.com/state-share-image">
+        <meta property="og:title" content="State-Share Image">
+        <meta property="og:description" content="HTTP(S) Application State-Sharing Using Domain-Based Steganographical-Encoded Image">
+        <meta property="og:image" content="./assets/favicon-512x512.png">
+
+        <link rel="stylesheet" href="./state-share-image/css/state-share-image.css">
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body class="theme-night">
+        <div class="page-container">
+            <h1>Demonstration for the <code>State-Share Image</code> Proposal</h1>
+
+            <p>Open this web page in two distinct browser tabs/windows, or even two different browsers.</p>
+
+            <p>Change the theme of the page by clicking on the buttons below, and thus altering the state.</p>
+
+            <div class="state-change">
+                <div class="state-change-buttons">
+                    <ul>
+                        <li class="state-change-button state-change-button-night state-change-button-active">
+                            <div class="state-change-button-color state-change-button-color-night"></div>
+                            night
+                        </li>
+
+                        <li class="state-change-button state-change-button-gradient">
+                            <div class="state-change-button-color state-change-button-color-gradient"></div>
+                            gradient
+                        </li>
+
+                        <li class="state-change-button state-change-button-light">
+                            <div class="state-change-button-color state-change-button-color-light"></div>
+                            light
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="state-change-display">
+<pre>
+state = {
+    app: {
+        theme: '<span id="pre-theme">night</span>'
+    }
+}
+</pre>
+                </div>
+            </div>
+
+
+            <p>Click on the <code>state-share-image</code> and copy it to clipboard.</p>
+
+            <p class="container-state-share-image">
+                <state-share-image></state-share-image>
+            </p>
+
+            <p>Switch to the other tab/window/browser, click on the <code>state-share-image</code> and paste it.</p>
+
+            <p>The state of the application has been succesfully encoded into the image (which could be shared with other users or saved externally for later use/referral in a State-Share Images Manager) and then succesfully converted back into a <code>state</code> object useful for the application, albeit minimal in this particular demonstration.</p>
+        </div>
+
+        <footer class="page-container">
+            the code is on <a href="https://github.com/plurid/state-share-image" target="_blank">github</a>
+        </footer>
+
+        <script src="./state-share-image/js/state-share-image.js"></script>
+        <script src="./script.js"></script>
+    </body>
+</html>

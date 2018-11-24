@@ -1,0 +1,85 @@
+state-share-image {
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+.state-share-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+  cursor: pointer; }
+
+.state-share-image-commands {
+  display: none;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  color: white;
+  font-size: 14px;
+  font-family: sans-serif;
+  border-radius: 5px;
+  background: #581b38;
+  background: linear-gradient(90deg, #581b38 0%, #4b2251 10%, #312f86 50%, #4f1f48 90%, #5a1931 100%);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); }
+
+.state-share-image-commands ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 210px;
+  cursor: pointer; }
+
+.state-share-image-commands ul li {
+  padding: 10px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 25px 1fr; }
+
+.state-share-image-commands ul li:hover {
+  background-color: rgba(255, 255, 255, 0.15); }
+
+.state-share-image-commands ul li:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
+
+.state-share-image-commands ul li:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px; }
+
+.state-share-image-commands-icon {
+  height: 15px;
+  padding: 5px; }
+
+.state-share-image-commands-input-li {
+  cursor: default; }
+
+.state-share-image-commands-input {
+  display: grid;
+  grid-template-columns: 100px 70px; }
+
+.state-share-image-commands-input input {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.25);
+  color: white;
+  padding-left: 5px;
+  padding-right: 5px; }
+
+.state-share-image-commands-input button {
+  background: #312f86;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  margin-left: 10px;
+  width: 100%; }
+
+.state-share-image-commands-input button:hover {
+  background: #222161; }
+
