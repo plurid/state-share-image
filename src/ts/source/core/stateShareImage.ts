@@ -95,7 +95,7 @@ export const stateShareImage: IStateShareImage = {
         const stateString = typeof stateObject === 'object'
                                 ? JSON.stringify(stateObject)
                                 : stateObject;
-        console.log('stateString:', stateString);
+        // console.log('stateString:', stateString);
 
         const defaultBaseImage = defBaseImages[getDefaultBaseImage('length', stateString.length, defaultBaseImages)];
 
@@ -193,55 +193,55 @@ function makeDefaultBaseImages(lengths: number[],
 
 
 
-// Exemplification
-const body = document.body;
-const state = {
-    app: {
-        theme: 'night',
-        multiByteChars: 'ăîșțâ€êé☻☃⁜𩸽𠜱👦✌️'
-    }
-}
-
-async function testEncode() {
-    const method = 'MSB';
-
-    // const publicKey = 'test';
-    // const encryptedState = stateShareImage.encrypt(state, publicKey);
-    // console.log('encryptedState', encryptedState);
-    // const shareImageEncrypted = await stateShareImage.encode(encryptedState);
-    // console.log('shareImageEncrypted', shareImageEncrypted);
-
-    const shareImage = await stateShareImage.encode(state);
-    // const shareImage = await stateShareImage.encode(state, method);
-    // console.log('shareImage', shareImage);
-
-    const encodedState = await stateShareImage.decode(shareImage);
-    // const encodedState = await stateShareImage.decode(shareImage, method);
-    console.log('encodedState', encodedState);
-
-
-    // const newImg = new Image();
-    // newImg.src = shareImage;
-    // newImg.height = 100;
-    // body.appendChild(newImg);
-}
-testEncode();
-
-
-
-// async function testDecode() {
-//     // const method = 'MSB';
-
-//     // const encryptedState = 'testing';
-//     // const encryptedState = await stateShareImage.decode(<encrypted-image>);
-//     // console.log('encryptedState', encryptedState);
-//     // const privateKey = 'test';
-//     // const decryptedState = stateShareImage.decrypt(encryptedState, privateKey);
-//     // console.log('decryptedState', decryptedState);
-
-//     // const encodedState = await stateShareImage.decode(imageWithState);
-//     // const encodedState = await stateShareImage.decode(imageWithStateMSB, method);
-//     // const encodedState = await stateShareImage.decode(invertedImageWithState);
-//     // console.log('encodedState', encodedState);
+// // Exemplification
+// const body = document.body;
+// const state = {
+//     app: {
+//         theme: 'night',
+//         multiByteChars: 'ăîșțâ€êé☻☃⁜𩸽𠜱👦✌️'
+//     }
 // }
-// testDecode();
+
+// async function testEncode() {
+//     const method = 'MSB';
+
+//     // const publicKey = 'test';
+//     // const encryptedState = stateShareImage.encrypt(state, publicKey);
+//     // console.log('encryptedState', encryptedState);
+//     // const shareImageEncrypted = await stateShareImage.encode(encryptedState);
+//     // console.log('shareImageEncrypted', shareImageEncrypted);
+
+//     const shareImage = await stateShareImage.encode(state);
+//     // const shareImage = await stateShareImage.encode(state, method);
+//     // console.log('shareImage', shareImage);
+
+//     const encodedState = await stateShareImage.decode(shareImage);
+//     // const encodedState = await stateShareImage.decode(shareImage, method);
+//     // console.log('encodedState', encodedState);
+
+
+//     // const newImg = new Image();
+//     // newImg.src = shareImage;
+//     // newImg.height = 100;
+//     // body.appendChild(newImg);
+// }
+// testEncode();
+
+
+
+// // async function testDecode() {
+// //     // const method = 'MSB';
+
+// //     // const encryptedState = 'testing';
+// //     // const encryptedState = await stateShareImage.decode(<encrypted-image>);
+// //     // console.log('encryptedState', encryptedState);
+// //     // const privateKey = 'test';
+// //     // const decryptedState = stateShareImage.decrypt(encryptedState, privateKey);
+// //     // console.log('decryptedState', decryptedState);
+
+// //     // const encodedState = await stateShareImage.decode(imageWithState);
+// //     // const encodedState = await stateShareImage.decode(imageWithStateMSB, method);
+// //     // const encodedState = await stateShareImage.decode(invertedImageWithState);
+// //     // console.log('encodedState', encodedState);
+// // }
+// // testDecode();
