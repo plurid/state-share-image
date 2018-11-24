@@ -8,7 +8,7 @@
 
 HTTP(S) Application State-Sharing Using Domain-Based Steganographical-Encoded Image
 
-Encode the `state` of an application into an image in order to be able to share it with others or store it for yourself.
+Encode the `state` of an application into an image in order to be able to share it with others or store it for yourself — [demo](https.plurid.com/state-share-image/).
 
 
 + [Concept](#concept)
