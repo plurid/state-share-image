@@ -245,3 +245,5 @@ function makeDefaultBaseImages(lengths: number[],
 // //     // console.log('encodedState', encodedState);
 // // }
 // // testDecode();
+
+(<any>window).stateShareImage = stateShareImage;
