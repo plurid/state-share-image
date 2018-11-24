@@ -169,5 +169,6 @@ function computeStateString(stateArrayBinary: string[]): string {
     for (let i = 0; i < stateArrayBinary.length; i++) {
         stateString += convert.charFromBinary(stateArrayBinary[i]);
     }
+    // console.log('stateString', stateString);
     return stateString;
 }

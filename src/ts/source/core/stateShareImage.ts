@@ -1,7 +1,8 @@
 import { defaultBaseImage100,
          defaultBaseImage200,
          defaultBaseImage400,
-         defaultBaseImage800 } from './defaultBaseImage';
+         defaultBaseImage800,
+         defaultBaseImage } from './defaultBaseImage';
 import { stateEncode } from './encode';
 import { stateDecode } from './decode';
 import { stateEncrypt } from './encrypt';
@@ -97,7 +98,7 @@ export const stateShareImage: IStateShareImage = {
                                 : stateObject;
         // console.log('stateString:', stateString);
 
-        const defaultBaseImage = defBaseImages[getDefaultBaseImage('length', stateString.length, defaultBaseImages)];
+        // const defaultBaseImage = defBaseImages[getDefaultBaseImage('length', stateString.length, defaultBaseImages)];
 
         const domainImageMetaTag = document.querySelector('meta[property="state-share-image"]');
         const domainImageSrc = domainImageMetaTag ? domainImageMetaTag.getAttribute('content') : '';
@@ -121,7 +122,7 @@ export const stateShareImage: IStateShareImage = {
             let stateImage = new Image();
             stateImage.onload = () => {
                 return resolve(new Promise((resolve, reject) => {
-                        const defaultBaseImage = defBaseImages[getDefaultBaseImage('width', stateImage.width, defaultBaseImages)];
+                        // const defaultBaseImage = defBaseImages[getDefaultBaseImage('width', stateImage.width, defaultBaseImages)];
                         const baseImageSrc = domainImageSrc ? domainImageSrc : defaultBaseImage;
 
                         let baseImage = new Image();
@@ -219,6 +220,9 @@ function makeDefaultBaseImages(lengths: number[],
 //     // const encodedState = await stateShareImage.decode(shareImage, method);
 //     // console.log('encodedState', encodedState);
 
+//     if (JSON.stringify(state) === encodedState) {
+//         console.log('ENCODED STATE THE SAME');
+//     }
 
 //     // const newImg = new Image();
 //     // newImg.src = shareImage;
