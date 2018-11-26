@@ -5,7 +5,7 @@ const state = {
 }
 
 
-const themes = ['night', 'gradient', 'light']
+const themes = ['night', 'gradient', 'light'];
 const stateChangeButtons = document.querySelectorAll('.state-change-button');
 
 
@@ -24,19 +24,12 @@ function handleStateChange() {
 
     themes.map(theme => {
         const buttonTheme = buttonName + theme;
-        // const activeButton = 'state-change-button-active';
-
-        // for (let button of stateChangeButtons) {
-        //     if (button !== this) {
-        //         button.classList.remove(activeButton);
-        //     }
-        // }
 
         if ([...this.classList].includes(buttonTheme)) {
-            // this.classList.add(activeButton);
             setTheme(theme);
             updatePreState(theme);
             updateState(theme);
+            setButtons(theme);
             stateShare();
         }
     });
@@ -76,7 +69,6 @@ function setState(stateString) {
 
 function updateStateShareImage(imageData) {
     const stateShareImg = document.querySelector('state-share-image img');
-    // console.log(stateShareImg);
     stateShareImg.src = imageData;
 }
 
@@ -84,23 +76,11 @@ function updateStateShareImage(imageData) {
 async function stateShare() {
     const enc = await stateShareImage.encode(state);
     updateStateShareImage(enc);
-    // const stateShareImg = docum/ent.querySelector('state-share-image');
-    // console.log('bbbb');
-    // stateShareImg.src = enc;
-    // console.log(enc);
-    const dec = await stateShareImage.decode(enc);
-    setState(dec);
-    // console.log('DECODED', dec);
-
-
-    // const a = await stateShareImage.decode('');
-    // console.log(a);
 }
 
 
 window.addEventListener('stateshareimage', async (event) => {
     const dec = await stateShareImage.decode(event.detail);
-    // console.log(dec);
     setState(dec);
 });
 
@@ -110,9 +90,7 @@ function setButtons(theme) {
     const buttonName = '.state-change-button-';
     const stateActiveButton = buttonName + theme;
     const btn = document.querySelector(stateActiveButton);
-
     const activeButton = 'state-change-button-active';
-
 
     themes.map(th => {
         const buttonTheme = buttonName + th;
@@ -124,6 +102,5 @@ function setButtons(theme) {
                 btn.classList.add(activeButton);
             }
         }
-
     });
 }
