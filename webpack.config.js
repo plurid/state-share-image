@@ -6,7 +6,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 
 const miniCssExtract = new MiniCssExtractPlugin({
-    filename: `../css/${appName}.css`,
+    filename: `./styles.css`,
     disable: process.env.NODE_ENV === "development"
 });
 const path = require('path');
@@ -17,8 +17,8 @@ module.exports = {
     // mode: 'production',
     entry: './app.ts',
     output: {
-        filename: `${appName}.js`,
-        path: path.resolve(__dirname, `${appName}/js`)
+        filename: 'script.js',
+        path: path.resolve(__dirname, 'pkg/')
     },
     optimization: {
         minimizer: [
