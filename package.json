@@ -1,6 +1,6 @@
 {
     "name": "state-share-image",
-    "version": "0.1.1",
+    "version": "0.1.0",
     "description": "HTTP(S) State-Sharing Using Domain-Based Generated Image",
     "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
     "license": "MIT",
@@ -8,7 +8,7 @@
         "type": "git",
         "url": "https://github.com/plurid/state-share-image.git"
     },
-    "main": "app.ts",
+    "main": "./pkg/script.js",
     "scripts": {
         "build": "webpack",
         "test": "jest ./test/unit/",
