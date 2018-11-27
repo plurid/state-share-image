@@ -104,9 +104,16 @@ To decode the `state` object from the obtained `state-share image` the reverse o
 
 ### Setup
 
-Add the `state-share-image` script to the application (or install with `npm`).
+Add the `state-share-image` `script.js` and `styles.css` to the application from the `./pkg` folder (or install with `npm`).
 
     npm install state-share-image
+
+and import
+
+    import 'state-share-image';
+    import 'state-share-image/pkg/styles.css';
+
+using `Webpack` or anything else to bundle.
 
 Define the `state` object for the application.
 
