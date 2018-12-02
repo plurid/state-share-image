@@ -4,8 +4,8 @@
 
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/state-share-image"><img src="https://img.shields.io/badge/npm-v0.2.0-blue.svg?logo=npm&style=for-the-badge" alt="Version"></a>
-  <a href="https://www.npmjs.com/package/state-share-image"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge" alt="License"></a>
+  <a href="https://www.npmjs.com/package/state-share-image"><img src="https://img.shields.io/npm/v/state-share-image.svg?colorB=581b38&logo=npm&style=for-the-badge" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/state-share-image"><img src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=492356&style=for-the-badge" alt="License"></a>
 </p>
 
 
