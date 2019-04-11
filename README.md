@@ -8,11 +8,9 @@
 
 
 
-<p align="center">
-    <h1>
-        State-Share Image
-    </h1>
-</p>
+<h1 align="center">
+    State-Share Image
+</h1>
 
 
 HTTP(S) Application State-Sharing Using Domain-Based Steganographical-Encoded Image
