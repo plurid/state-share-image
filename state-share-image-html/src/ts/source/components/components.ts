@@ -1,0 +1,1 @@
+import './state-share-image/state-share-image';

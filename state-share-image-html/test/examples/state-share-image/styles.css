@@ -1,0 +1,181 @@
+body {
+    background-color: hsl(220, 10%, 15%);
+    color: hsl(220, 10%, 85%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+
+.theme-night {
+    background-color: hsl(220, 10%, 15%);
+}
+
+.theme-light {
+    background-color: hsl(220, 10%, 85%);
+    color: hsl(220, 10%, 15%);
+}
+
+.theme-gradient {
+    background: linear-gradient(90deg, rgba(88,27,56,1) 0%, rgba(75,34,81,1) 10%, rgba(49,47,134,1) 50%, rgba(79,31,72,1) 90%, rgba(90,25,49,1) 100%);
+}
+
+
+
+.theme-light code {
+    background-color: hsl(220, 10%, 70%);
+}
+
+code {
+    background-color: hsl(220, 10%, 10%);
+    font-size: 1.1rem;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+
+h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+
+h1 code {
+    font-size: 1.8rem;
+}
+
+p {
+    line-height: 1.5;
+}
+
+footer {
+    padding-top: 70px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+
+.theme-light a {
+    color: hsl(220, 10%, 40%);
+}
+
+.theme-light a:hover {
+    color: hsl(220, 10%, 0%);
+}
+
+a {
+    color: hsl(220, 10%, 50%);
+}
+
+a:hover {
+    color: white;
+}
+
+.page-container {
+    margin: 0 auto;
+    width: 60%;
+}
+
+@media (max-width: 700px) {
+    .page-container {
+        width: 85%;
+    }
+}
+
+
+.state-change {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.state-change-display {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+.state-change-buttons ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+
+@media (max-width: 700px) {
+    .state-change-buttons ul {
+        padding-left: 0px;
+    }
+}
+
+
+.state-change-buttons ul li {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 120px;
+    height: 25px;
+    user-select: none;
+}
+
+
+.state-change-button {
+    cursor: pointer;
+    height: 25px;
+}
+
+
+.theme-light .state-change-button:hover {
+    background-color: hsl(220, 10%, 75%);
+}
+
+
+.theme-gradient .state-change-button:hover {
+    background-color: hsla(220, 10%, 55%, 0.2);
+}
+
+.state-change-button:hover {
+    background-color: hsl(220, 10%, 30%);
+    border-radius: 18.5px;
+}
+
+.state-change-button-active {
+    background-color: hsla(220, 10%, 50%, 0.3);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    border-radius: 18.5px;
+}
+
+.state-change-button-color {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    /* border: 1px solid rgb(20, 20, 20); */
+}
+
+.state-change-button-color-night {
+    background-color: hsl(220, 10%, 10%);
+}
+
+.state-change-button-color-gradient {
+    background: rgb(88,27,56);
+    background: linear-gradient(90deg, rgba(88,27,56,1) 0%, rgba(75,34,81,1) 10%, rgba(49,47,134,1) 50%, rgba(79,31,72,1) 90%, rgba(90,25,49,1) 100%);
+}
+
+.state-change-button-color-light {
+    background-color: hsl(220, 10%, 95%);
+}
+
+
+
+.container-state-share-image {
+    padding-top: 20px;
+    padding-left: 20px;
+    height: 50px;
+}
+
+@media (max-width: 700px) {
+    .container-state-share-image {
+        padding-left: 0px;
+    }
+}

@@ -1,0 +1,12 @@
+/about
+/coverage
+/src
+/test
+app.ts
+.babelrc
+.editorconfig
+.stylelintrc
+jest.config.js
+postcss.config.js
+tsconfig.json
+webpack.config.js
