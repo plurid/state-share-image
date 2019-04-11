@@ -1,22 +1,33 @@
 {
-    "name": "state-share-image-react",
-    "version": "0.1.0",
-    "description": "React implementation fro state-share-image",
-    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "name": "@plurid/state-share-image-react",
+    "version": "0.0.0",
+    "description": "HTTP(S) State-Sharing Using Domain-Based Generated Image, React implementation",
+    "keywords": [
+        "state-share",
+        "steganography",
+        "image",
+        "react"
+    ],
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/plurid/state-share-image-react.git"
+        "url": "https://github.com/plurid/state-share-image"
     },
     "bugs": {
-        "url": "https://github.com/plurid/state-share-image-react/issues"
+        "email": "feedback@plurid.com",
+        "url": "https://github.com/plurid/state-share-image/issues"
     },
+    "homepage": "https://github.com/plurid/state-share-image/blob/master/packages/state-share-image-react",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist/"
+    ],
     "main": "dist/index.js",
     "module": "dist/index.es.js",
     "jsnext:main": "dist/index.es.js",
-    "files": [
-        "dist"
-    ],
     "engines": {
         "node": ">=8",
         "npm": ">=5"
