@@ -1,5 +1,6 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/identity/state-share-image-logo.png" height="200px">
+    <br />
     <a href="https://github.com/plurid/state-share-image/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=492356&style=for-the-badge" alt="License">
     </a>
@@ -8,7 +9,9 @@
 
 
 <p align="center">
-    State-Share Image
+    <h1>
+        State-Share Image
+    </h1>
 </p>
 
 
