@@ -1,11 +1,15 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/identity/state-share-image-logo-rounded.png" height="200px">
+    <img src="https://raw.githubusercontent.com/plurid/state-share-image/master/about/identity/state-share-image-logo.png" height="200px">
 </p>
 
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/state-share-image"><img src="https://img.shields.io/npm/v/state-share-image.svg?colorB=581b38&logo=npm&style=for-the-badge" alt="Version"></a>
-  <a href="https://github.com/plurid/state-share-image/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=492356&style=for-the-badge" alt="License"></a>
+    <a href="https://www.npmjs.com/package/@plurid/state-share-image-html">
+        <img src="https://img.shields.io/npm/v/@plurid/state-share-image-html.svg?colorB=581b38&logo=npm&style=for-the-badge" alt="Version">
+    </a>
+    <a href="https://github.com/plurid/state-share-image/blob/master/LICENSE">
+        <img src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=492356&style=for-the-badge" alt="License">
+    </a>
 </p>
 
 

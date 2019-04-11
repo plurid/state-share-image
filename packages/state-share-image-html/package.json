@@ -1,13 +1,30 @@
 {
-    "name": "state-share-image",
-    "version": "0.2.1",
-    "description": "HTTP(S) State-Sharing Using Domain-Based Generated Image",
-    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "name": "@plurid/state-share-image-html",
+    "version": "0.0.0",
+    "description": "HTTP(S) State-Sharing Using Domain-Based Generated Image, HTML Custom Elements implementation",
+    "keywords": [
+        "state-share",
+        "steganography",
+        "image",
+        "html custom elements"
+    ],
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/plurid/state-share-image.git"
+        "url": "https://github.com/plurid/state-share-image"
     },
+    "bugs": {
+        "email": "feedback@plurid.com",
+        "url": "https://github.com/plurid/state-share-image/issues"
+    },
+    "homepage": "https://github.com/plurid/state-share-image/blob/master/packages/state-share-image-html",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist/"
+    ],
     "main": "./pkg/script.js",
     "scripts": {
         "build": "webpack",
