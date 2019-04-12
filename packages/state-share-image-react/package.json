@@ -1,6 +1,6 @@
 {
     "name": "@plurid/state-share-image-react",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "HTTP(S) State-Sharing Using Domain-Based Generated Image, React implementation",
     "keywords": [
         "state-share",

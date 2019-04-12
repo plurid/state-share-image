@@ -1,6 +1,6 @@
 {
     "name": "@plurid/state-share-image-vue",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "HTTP(S) State-Sharing Using Domain-Based Generated Image, Vue implementation",
     "keywords": [
         "state-share",
@@ -34,9 +34,5 @@
     },
     "scripts": {
         "clean": "rm -rf ./dist"
-    },
-    "peerDependencies": {
-    },
-    "devDependencies": {
     }
 }
